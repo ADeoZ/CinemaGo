@@ -32,12 +32,12 @@ class HallController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Hall $hall
+     * @param integer
      * @return Response
      */
-    public function show(Hall $hall)
+    public function show($id)
     {
-        return Hall::findOrFail($hall);
+        return Hall::findOrFail($id);
     }
 
     /**

@@ -18,7 +18,7 @@ class CreateSeatsTable extends Migration
             $table->integer('number')->unsigned();
             $table->string('status');
             $table->integer('hall_id')->unsigned()->default(1);
-            $table->foreign('hall_id')->references('id')->on('halls');
+            $table->foreign('hall_id')->references('id')->on('halls')->onDelete('cascade');;
             $table->timestamps();
         });
     }

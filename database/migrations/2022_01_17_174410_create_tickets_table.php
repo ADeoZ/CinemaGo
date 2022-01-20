@@ -16,7 +16,7 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->integer('session_id')->unsigned()->default(1);
-            $table->foreign('session_id')->references('id')->on('sessions');
+            $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade');;
             $table->timestamps();
         });
     }

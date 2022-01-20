@@ -13,7 +13,7 @@ class SeatRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,9 +24,11 @@ class SeatRequest extends FormRequest
     public function rules()
     {
         return [
-            'number' => ['required', 'integer'],
-            'status' => ['required', 'string'],
-            'hall_id' => ['integer'],
+            'seats' => ['required', 'array'],
+            'seats.*.id' => ['integer'],
+            'seats.*.number' => ['required', 'integer'],
+            'seats.*.status' => ['required', 'string'],
+            'seats.*.hall_id' => ['integer'],
         ];
     }
 }

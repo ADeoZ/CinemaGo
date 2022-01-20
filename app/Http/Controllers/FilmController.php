@@ -32,12 +32,12 @@ class FilmController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Film $film
+     * @param integer
      * @return Response
      */
-    public function show(Film $film)
+    public function show($id)
     {
-        return Film::findOrFail($film);
+        return Film::findOrFail($id);
     }
 
     /**

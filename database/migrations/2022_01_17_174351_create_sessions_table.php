@@ -17,9 +17,9 @@ class CreateSessionsTable extends Migration
             $table->id();
             $table->time('time')->unsigned();
             $table->integer('hall_id')->unsigned()->default(1);
-            $table->foreign('hall_id')->references('id')->on('halls');
+            $table->foreign('hall_id')->references('id')->on('halls')->onDelete('cascade');;
             $table->integer('film_id')->unsigned()->default(1);
-            $table->foreign('film_id')->references('id')->on('films');
+            $table->foreign('film_id')->references('id')->on('films')->onDelete('cascade');;
             $table->timestamps();
         });
     }

@@ -22,11 +22,11 @@ class TicketController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Ticket $ticket
+     * @param integer
      * @return Response
      */
-    public function show(Ticket $ticket)
+    public function show($id)
     {
-        return Ticket::findOrFail($ticket);
+        return Ticket::findOrFail($id);
     }
 }
