@@ -33,7 +33,6 @@ class TicketController extends Controller
      */
     public function show($id)
     {
-        $ticket = Ticket::whereId($id)->with('session')->with('seats')->first();
-        return $ticket;
+        return Ticket::whereId($id)->with('session')->with('seats')->first();
     }
 }
