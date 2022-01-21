@@ -41,31 +41,21 @@ class ClientController extends Controller
         $session = Session::where('sessions.id', $sessionId)
             ->leftJoin('halls', 'sessions.hall_id', '=', 'halls.id')
             ->leftJoin('films', 'sessions.film_id', '=', 'films.id')
-            ->select('sessions.id', 'sessions.time', 'films.title', 'sessions.hall_id', 'halls.name', 'halls.row', 'halls.price_standard', 'halls.price_vip');
+            ->select('sessions.id', 'sessions.time', 'films.title', 'sessions.hall_id', 'halls.name', 'halls.row', 'halls.price_standard', 'halls.price_vip')->get();
 
         // Купленные места
         $tickets = Seat::has('tickets')->whereHas('tickets', function (Builder $query) use ($sessionId) {
             $query->where('session_id', $sessionId);
-        })->pluck('id');
+        })->get();
 
         // Все места на сеанс
-        $seats = Seat::where('hall_id', $session->value('hall_id'))
-        ->each(function ($seat) use ($tickets) {
-            if(in_array($seat['id'], iterator_to_array($tickets))) {
-                echo "hello";
+        $seats = Seat::where('hall_id', $session->first()->hall_id)->select('id', 'number', 'status')->get();
+        foreach ($seats as $seat) {
+            if ($tickets->contains($seat)) {
+                $seat->status = 'sold';
             }
-            else {
-                echo "no";
-            }
-        });
-//        $seats->chunkMap(function (&$seat) use ($tickets) {
-//            if (in_array($seat['id'], $tickets, true)) {
-//                $seat['status'] = 'sold';
-//            }
-//        });
-        return $seats->get();
+        }
 
-        // return ["session" => $session->get(), "seats" => $seats->get()];
-
+        return ["session" => $session, "seats" => $seats];
     }
 }
