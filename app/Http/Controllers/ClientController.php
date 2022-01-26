@@ -25,7 +25,7 @@ class ClientController extends Controller
         $filmIds = Session::whereHas('hall', function (Builder $query) {
             $query->where('opened', 1);
         })->pluck('film_id');
-        $films = Film::all()->whereIn('id', $filmIds);
+        $films = Film::all()->whereIn('id', $filmIds)->flatten();
 
         return ["halls" => $halls, "films" => $films];
     }
@@ -41,7 +41,7 @@ class ClientController extends Controller
         $session = Session::where('sessions.id', $sessionId)
             ->leftJoin('halls', 'sessions.hall_id', '=', 'halls.id')
             ->leftJoin('films', 'sessions.film_id', '=', 'films.id')
-            ->select('sessions.id', 'sessions.time', 'films.title', 'sessions.hall_id', 'halls.name', 'halls.row', 'halls.price_standard', 'halls.price_vip')->get();
+            ->select('sessions.id', 'sessions.time', 'films.title', 'sessions.hall_id', 'halls.name', 'halls.row', 'halls.price_standard', 'halls.price_vip')->first();
 
         // Купленные места
         $tickets = Seat::has('tickets')->whereHas('tickets', function (Builder $query) use ($sessionId) {
