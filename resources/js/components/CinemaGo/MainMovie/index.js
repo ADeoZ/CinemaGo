@@ -2,6 +2,7 @@ import {useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {getSchedule} from "../../../reducers/scheduleSlice";
 import Movie from "./Movie";
+import CinemaGo from "../CinemaGo";
 
 export default function Main() {
     const {films} = useSelector((state) => state.schedule);
@@ -12,13 +13,13 @@ export default function Main() {
     }, []);
 
     return (
-        <main>
+        <CinemaGo nav>
             {films.map((film) =>
                 <Movie
                     id={film.id}
                     key={film.id}
                 />
             )}
-        </main>
+        </CinemaGo>
     );
 }

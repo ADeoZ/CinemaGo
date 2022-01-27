@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {getSeance} from "../../../reducers/seanceSlice";
-import Header from "../Header";
+import CinemaGo from "../CinemaGo";
 import SeanceInfo from "./SeanceInfo";
 import SeanceHall from "./SeanceHall";
 import Button from "../Button";
@@ -16,16 +16,13 @@ export default function MainSeance() {
         dispatch(getSeance(seanceId));
     }, []);
 
-
-    console.log('id', seanceId);
-    console.log('session', session);
-
     return (
-        <>
-            <Header/>
-            <SeanceInfo id={seanceId}/>
-            {/*<SeanceHall/>*/}
-            {/*<Button text={"Забронировать"} link={"booking"}/>*/}
-        </>
+        <CinemaGo>
+            <section className="buying">
+            <SeanceInfo/>
+            <SeanceHall/>
+            <Button text={"Забронировать"} link={"booking"}/>
+            </section>
+        </CinemaGo>
     );
 }

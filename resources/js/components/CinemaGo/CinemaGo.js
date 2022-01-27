@@ -1,13 +1,14 @@
 import Header from "./Header";
 import Navigation from "./Navigation";
-import MainMovie from "./MainMovie";
 
-export default function CinemaGo() {
+export default function CinemaGo(props) {
     return (
         <>
             <Header/>
-            <Navigation/>
-            <MainMovie />
+            {props.nav && <Navigation/>}
+            <main>
+                {props.children}
+            </main>
         </>
     );
 }
