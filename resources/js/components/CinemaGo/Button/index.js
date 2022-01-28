@@ -1,10 +1,20 @@
-export default function Button() {
+import {useNavigate} from "react-router-dom";
+
+export default function Button(props) {
+    const {text, link, callback} = props;
+    const navigate = useNavigate();
+
+    const clickHandle = () => {
+        callback();
+        navigate(link);
+    }
+
     return (
         <button
             className="acceptin-button"
-            // onClick="location.href='payment.html'"
+            onClick={clickHandle}
         >
-            Забронировать
+            {text}
         </button>
     );
 }

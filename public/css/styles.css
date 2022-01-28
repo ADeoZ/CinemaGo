@@ -323,18 +323,18 @@ body {
 }
 
 /* ~~~~~~~~~~~~ Билет ~~~~~~~~~~~~ */
-.tichet__check, .ticket__info-wrapper {
+.ticket__check, .ticket__info-wrapper {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   background-color: rgba(241, 235, 230, 0.95);
 }
 
-.tichet__check {
+.ticket__check {
   position: relative;
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
 }
-.tichet__check::before {
+.ticket__check::before {
   content: "";
   display: block;
   position: absolute;
@@ -345,7 +345,7 @@ body {
   background-image: url(/images/border-top.png?723ceced2b6b30dff558dbb17dd2599b);
   background-size: 10px 3px;
 }
-.tichet__check::after {
+.ticket__check::after {
   content: "";
   display: block;
   position: absolute;

@@ -49,7 +49,7 @@ class ClientController extends Controller
         })->get();
 
         // Все места на сеанс
-        $seats = Seat::where('hall_id', $session->first()->hall_id)->select('id', 'number', 'status')->get();
+        $seats = Seat::where('hall_id', $session->hall_id)->select('id', 'number', 'status')->get();
         foreach ($seats as $seat) {
             if ($tickets->contains($seat)) {
                 $seat->status = 'sold';

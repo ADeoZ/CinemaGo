@@ -3,6 +3,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 const initialState = {
     session: {},
     seats: [],
+    ticket: {},
 };
 
 export const getSeance = createAsyncThunk("seance/getSeats", async (id) => {
@@ -14,7 +15,12 @@ export const getSeance = createAsyncThunk("seance/getSeats", async (id) => {
 const seanceSlice = createSlice({
     name: "seance",
     initialState,
-    reducers: {},
+    reducers: {
+        createTicket: (state, action) => {
+            const { seanceId, seats, cost } = action.payload;
+            state.ticket = {seanceId, seats, cost};
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getSeance.fulfilled, (state, action) => {
@@ -25,4 +31,5 @@ const seanceSlice = createSlice({
     },
 });
 
+export const { createTicket } = seanceSlice.actions;
 export default seanceSlice.reducer;

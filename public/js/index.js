@@ -1429,11 +1429,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var _components_CinemaGo_MainMovie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/CinemaGo/MainMovie */ "./resources/js/components/CinemaGo/MainMovie/index.js");
 /* harmony import */ var _components_CinemaGo_MainSeance__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/CinemaGo/MainSeance */ "./resources/js/components/CinemaGo/MainSeance/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_CinemaGo_MainBooking__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/CinemaGo/MainBooking */ "./resources/js/components/CinemaGo/MainBooking/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -1442,14 +1444,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function App() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Routes, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Routes, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
         path: "/",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_CinemaGo_MainMovie__WEBPACK_IMPORTED_MODULE_1__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_CinemaGo_MainMovie__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
         path: "hall/:seanceId",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_CinemaGo_MainSeance__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_CinemaGo_MainSeance__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+        path: "booking",
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_CinemaGo_MainBooking__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+        path: "ticket",
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_CinemaGo_MainMovie__WEBPACK_IMPORTED_MODULE_1__["default"], {})
       })]
     })
   });
@@ -1470,13 +1478,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Button)
 /* harmony export */ });
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
-function Button() {
+
+function Button(props) {
+  var text = props.text,
+      link = props.link,
+      callback = props.callback;
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useNavigate)();
+
+  var clickHandle = function clickHandle() {
+    callback();
+    navigate(link);
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
-    className: "acceptin-button" // onClick="location.href='payment.html'"
-    ,
-    children: "\u0417\u0430\u0431\u0440\u043E\u043D\u0438\u0440\u043E\u0432\u0430\u0442\u044C"
+    className: "acceptin-button",
+    onClick: clickHandle,
+    children: text
   });
 }
 
@@ -1533,6 +1553,138 @@ function Header() {
       children: ["\u0418\u0434\u0451\u043C", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
         children: "\u0432"
       }), "\u043A\u0438\u043D\u043E"]
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/CinemaGo/MainBooking/BookingInfo/index.js":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/CinemaGo/MainBooking/BookingInfo/index.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BookingInfo)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function BookingInfo() {
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
+    return state.seance;
+  }),
+      session = _useSelector.session,
+      seats = _useSelector.seats,
+      ticket = _useSelector.ticket;
+
+  var seatsNumbers = seats.filter(function (seat) {
+    return ticket.seats.includes(seat.id);
+  }).map(function (seat) {
+    return seat.number;
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+      className: "ticket__info",
+      children: ["\u041D\u0430 \u0444\u0438\u043B\u044C\u043C: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "ticket__details ticket__title",
+        children: session.title
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+      className: "ticket__info",
+      children: ["\u041C\u0435\u0441\u0442\u0430: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "ticket__details ticket__chairs",
+        children: seatsNumbers.join(', ')
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+      className: "ticket__info",
+      children: ["\u0412 \u0437\u0430\u043B\u0435: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "ticket__details ticket__hall",
+        children: session.name
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+      className: "ticket__info",
+      children: ["\u041D\u0430\u0447\u0430\u043B\u043E \u0441\u0435\u0430\u043D\u0441\u0430: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "ticket__details ticket__start",
+        children: session.time
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+      className: "ticket__info",
+      children: ["\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "ticket__details ticket__cost",
+        children: ticket.cost
+      }), " \u0440\u0443\u0431\u043B\u0435\u0439"]
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/CinemaGo/MainBooking/index.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/CinemaGo/MainBooking/index.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MainBooking)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var _CinemaGo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../CinemaGo */ "./resources/js/components/CinemaGo/CinemaGo.js");
+/* harmony import */ var _TicketHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../TicketHeader */ "./resources/js/components/CinemaGo/TicketHeader/index.js");
+/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Button */ "./resources/js/components/CinemaGo/Button/index.js");
+/* harmony import */ var _BookingInfo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./BookingInfo */ "./resources/js/components/CinemaGo/MainBooking/BookingInfo/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+
+function MainBooking() {
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return state.seance;
+  }),
+      session = _useSelector.session,
+      ticket = _useSelector.ticket;
+
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!session.id || !ticket.seanceId) {
+      navigate(-1);
+    }
+  }, []);
+
+  var submitHandle = function submitHandle() {
+    console.log('submit');
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_CinemaGo__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("section", {
+      className: "ticket",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_TicketHeader__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        text: "Вы выбрали билеты:"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "ticket__info-wrapper",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_BookingInfo__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          text: "Получить код бронирования",
+          link: "/ticket",
+          callback: submitHandle
+        })]
+      })]
     })
   });
 }
@@ -1790,6 +1942,80 @@ function Main() {
 
 /***/ }),
 
+/***/ "./resources/js/components/CinemaGo/MainSeance/SeanceHall/SeanceHallSeat/index.js":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/CinemaGo/MainSeance/SeanceHall/SeanceHallSeat/index.js ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SeanceHallSeat)
+/* harmony export */ });
+/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
+/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function SeanceHallSeat(props) {
+  var status = props.status,
+      callback = props.callback;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      taken = _useState2[0],
+      setTaken = _useState2[1];
+
+  var clickHandle = function clickHandle() {
+    setTaken(!taken);
+    callback();
+  };
+
+  var activeClass = "buying-scheme__chair_disabled";
+
+  switch (status) {
+    case "disabled":
+      activeClass = "buying-scheme__chair_disabled";
+      break;
+
+    case "standard":
+      activeClass = "buying-scheme__chair_standard";
+      break;
+
+    case "vip":
+      activeClass = "buying-scheme__chair_vip";
+      break;
+
+    case "sold":
+      activeClass = "buying-scheme__chair_taken";
+      break;
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+    className: classnames_bind__WEBPACK_IMPORTED_MODULE_0___default()("buying-scheme__chair", taken ? "buying-scheme__chair_selected" : activeClass),
+    onClick: function onClick() {
+      return status === "disabled" || status === "sold" ? false : clickHandle();
+    }
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/CinemaGo/MainSeance/SeanceHall/index.js":
 /*!*************************************************************************!*\
   !*** ./resources/js/components/CinemaGo/MainSeance/SeanceHall/index.js ***!
@@ -1802,48 +2028,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ SeanceHall)
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames/bind */ "./node_modules/classnames/bind.js");
-/* harmony import */ var classnames_bind__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames_bind__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _SeanceHallSeat__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SeanceHallSeat */ "./resources/js/components/CinemaGo/MainSeance/SeanceHall/SeanceHallSeat/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
 
+function SeanceHall(props) {
+  var _callback = props.callback;
 
-function SeanceHall() {
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
     return state.seance;
   }),
       session = _useSelector.session,
       seats = _useSelector.seats;
 
-  var seatByRow = seats.reduce(function (res, seat, index) {
-    var chunkIndex = Math.floor(index / perChunk);
+  var seatsInRow = seats.length / session.row; // делим места по рядам
 
-    if (!resultArray[chunkIndex]) {
-      resultArray[chunkIndex] = []; // start a new chunk
+  var seatsByRow = seats.reduce(function (result, seat, index) {
+    var chunkIndex = Math.floor(index / seatsInRow);
+
+    if (!result[chunkIndex]) {
+      result[chunkIndex] = [];
     }
 
-    resultArray[chunkIndex].push(item);
-    return resultArray;
-  }, []); // console.log(seats);
-  // {index % (seats.length / session.row) === 0 && <div className="buying-scheme__row">}
-  //     {index % (seats.length / session.row) === ((seats.length / session.row) - 1) && </div>}
-
+    result[chunkIndex].push(seat);
+    return result;
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "buying-scheme",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "buying-scheme__wrapper",
-      children: seats.map(function (seat, index) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-            className: classnames_bind__WEBPACK_IMPORTED_MODULE_1___default()("buying-scheme__chair", {
-              "buying-scheme__chair_disabled": seat.status === "disabled",
-              "buying-scheme__chair_standard": seat.status === "standard",
-              "buying-scheme__chair_vip": seat.status === "vip"
-            })
-          }, seat.id)
-        });
+      children: seatsByRow.map(function (row, index) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "buying-scheme__row",
+          children: row.map(function (seat) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_SeanceHallSeat__WEBPACK_IMPORTED_MODULE_1__["default"], {
+              status: seat.status,
+              callback: function callback() {
+                return _callback(seat.id, seat.status);
+              }
+            }, seat.id);
+          })
+        }, index);
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "buying-scheme__legend",
@@ -1852,7 +2079,7 @@ function SeanceHall() {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
           className: "buying-scheme__legend-price",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-            className: "buying-scheme__chair buying-scheme__chair_standart"
+            className: "buying-scheme__chair buying-scheme__chair_standard"
           }), " \u0421\u0432\u043E\u0431\u043E\u0434\u043D\u043E (", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
             className: "buying-scheme__legend-value",
             children: session.price_standard
@@ -1962,20 +2189,56 @@ function MainSeance() {
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
     return state.seance;
   }),
-      session = _useSelector.session,
-      seats = _useSelector.seats;
+      session = _useSelector.session;
 
   var seanceId = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useParams)().seanceId;
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useDispatch)();
+  var selectedSeats = [];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     dispatch((0,_reducers_seanceSlice__WEBPACK_IMPORTED_MODULE_2__.getSeance)(seanceId));
   }, []);
+
+  var selectHandle = function selectHandle(id, status) {
+    var price = status === "vip" ? session.price_vip : session.price_standard;
+    var hasSeat = selectedSeats.findIndex(function (seat) {
+      return seat.id === id;
+    });
+
+    if (hasSeat !== -1) {
+      selectedSeats.splice(hasSeat, 1);
+    } else {
+      selectedSeats.push({
+        id: id,
+        price: price
+      });
+    }
+  };
+
+  var submitHandle = function submitHandle() {
+    var ticket = selectedSeats.reduce(function (res, seat) {
+      res.seats.push(seat.id);
+      res.cost += +seat.price;
+      return res;
+    }, {
+      seats: [],
+      cost: 0
+    });
+    dispatch((0,_reducers_seanceSlice__WEBPACK_IMPORTED_MODULE_2__.createTicket)({
+      seanceId: seanceId,
+      seats: ticket.seats,
+      cost: ticket.cost
+    }));
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_CinemaGo__WEBPACK_IMPORTED_MODULE_3__["default"], {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("section", {
       className: "buying",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_SeanceInfo__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_SeanceHall__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_SeanceInfo__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_SeanceHall__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        callback: selectHandle
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
         text: "Забронировать",
-        link: "booking"
+        link: "/booking",
+        callback: submitHandle
       })]
     })
   });
@@ -2114,6 +2377,32 @@ function Navigation() {
 
 /***/ }),
 
+/***/ "./resources/js/components/CinemaGo/TicketHeader/index.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/CinemaGo/TicketHeader/index.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TicketHeader)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+function TicketHeader(props) {
+  var text = props.text;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("header", {
+    className: "ticket__check",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h2", {
+      className: "ticket__check-title",
+      children: text
+    })
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/index.js":
 /*!*******************************!*\
   !*** ./resources/js/index.js ***!
@@ -2222,6 +2511,7 @@ var scheduleSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createSlice
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getSeance": () => (/* binding */ getSeance),
+/* harmony export */   "createTicket": () => (/* binding */ createTicket),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -2236,7 +2526,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var initialState = {
   session: {},
-  seats: []
+  seats: [],
+  ticket: {}
 };
 var getSeance = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("seance/getSeats", /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(id) {
@@ -2272,17 +2563,31 @@ var getSeance = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThun
 var seanceSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createSlice)({
   name: "seance",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    createTicket: function createTicket(state, action) {
+      var _action$payload = action.payload,
+          seanceId = _action$payload.seanceId,
+          seats = _action$payload.seats,
+          cost = _action$payload.cost;
+      state.ticket = {
+        seanceId: seanceId,
+        seats: seats,
+        cost: cost
+      };
+    }
+  },
   extraReducers: function extraReducers(builder) {
     builder.addCase(getSeance.fulfilled, function (state, action) {
-      var _action$payload = action.payload,
-          session = _action$payload.session,
-          seats = _action$payload.seats;
+      var _action$payload2 = action.payload,
+          session = _action$payload2.session,
+          seats = _action$payload2.seats;
       state.session = session;
       state.seats = seats;
     });
   }
 });
+var createTicket = seanceSlice.actions.createTicket;
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (seanceSlice.reducer);
 
 /***/ }),
