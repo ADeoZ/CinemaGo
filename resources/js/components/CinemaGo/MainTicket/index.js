@@ -1,38 +1,31 @@
+import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
 import CinemaGo from "../CinemaGo";
 import TicketHeader from "../TicketHeader";
-import Button from "../Button";
 import TicketInfo from "../TicketInfo";
+import {resetSeance} from "../../../reducers/seanceSlice";
 
-export default function MainBooking() {
+export default function MainTicket() {
     const {session, seats, ticket} = useSelector((state) => state.seance);
-    const navigate = useNavigate();
-
     const seatsNumbers = seats.filter((seat) => ticket.seats.includes(seat.id)).map((seat) => seat.number);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        if (!session.id || !ticket.seanceId) {
-            navigate(-1);
-        }
-    }, []);
+        dispatch(resetSeance());
+    },[]);
 
     return (
         <CinemaGo>
             <section className="ticket">
-                <TicketHeader text={"Вы выбрали билеты:"}/>
+                <TicketHeader text={"Электронный билет"}/>
                 <div className="ticket__info-wrapper">
                     <TicketInfo
                         film={session.title}
                         seats={seatsNumbers.join(', ')}
                         hall={session.name}
                         time={session.time}
-                        cost={ticket.cost}
                     />
-                    <Button text={"Получить код бронирования"} link={"/ticket"}/>
-                    <p className="ticket__hint">После оплаты билет будет доступен в этом окне, а также придёт вам на
-                        почту. Покажите QR-код нашему контроллёру у входа в зал.</p>
+                    <p className="ticket__hint">Покажите QR-код нашему контроллеру для подтверждения бронирования.</p>
                     <p className="ticket__hint">Приятного просмотра!</p>
                 </div>
             </section>

@@ -16,6 +16,9 @@ const seanceSlice = createSlice({
     name: "seance",
     initialState,
     reducers: {
+        resetSeance: (state) => {
+            return initialState
+        },
         createTicket: (state, action) => {
             const { seanceId, seats, cost } = action.payload;
             state.ticket = {seanceId, seats, cost};
@@ -31,5 +34,5 @@ const seanceSlice = createSlice({
     },
 });
 
-export const { createTicket } = seanceSlice.actions;
+export const { resetSeance, createTicket } = seanceSlice.actions;
 export default seanceSlice.reducer;

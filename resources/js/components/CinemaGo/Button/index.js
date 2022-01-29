@@ -5,7 +5,7 @@ export default function Button(props) {
     const navigate = useNavigate();
 
     const clickHandle = () => {
-        callback();
+        callback && callback();
         navigate(link);
     }
 

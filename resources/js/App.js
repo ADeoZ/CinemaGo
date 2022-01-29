@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import MainMovie from "./components/CinemaGo/MainMovie";
 import MainSeance from "./components/CinemaGo/MainSeance";
 import MainBooking from "./components/CinemaGo/MainBooking";
+import MainTicket from "./components/CinemaGo/MainTicket";
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
                 <Route path="/" element={<MainMovie/>}/>
                 <Route path="hall/:seanceId" element={<MainSeance/>}/>
                 <Route path="booking" element={<MainBooking/>}/>
-                <Route path="ticket" element={<MainMovie/>}/>
+                <Route path="ticket" element={<MainTicket/>}/>
             </Routes>
         </BrowserRouter>
     );
