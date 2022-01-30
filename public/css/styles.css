@@ -20,6 +20,9 @@ body {
 .page-header {
   padding: 1.4rem;
 }
+.page-header a {
+  text-decoration: none;
+}
 
 .page-header__title {
   margin: 0;

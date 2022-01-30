@@ -11,7 +11,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<MainMovie/>}/>
-                <Route path="hall/:seanceId" element={<MainSeance/>}/>
+                <Route path="seance/:seanceId" element={<MainSeance/>}/>
                 <Route path="booking" element={<MainBooking/>}/>
                 <Route path="ticket" element={<MainTicket/>}/>
             </Routes>

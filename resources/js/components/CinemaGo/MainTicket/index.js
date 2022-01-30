@@ -1,18 +1,27 @@
-import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {buyTicket, resetSeance} from "../../../reducers/seanceSlice";
 import CinemaGo from "../CinemaGo";
 import TicketHeader from "../TicketHeader";
 import TicketInfo from "../TicketInfo";
-import {resetSeance} from "../../../reducers/seanceSlice";
+import TicketQr from "./TicketQr";
 
 export default function MainTicket() {
     const {session, seats, ticket} = useSelector((state) => state.seance);
-    const seatsNumbers = seats.filter((seat) => ticket.seats.includes(seat.id)).map((seat) => seat.number);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
+    const seatsNumbers = seats.filter((seat) => ticket.seats.includes(seat.id)).map((seat) => seat.number);
 
     useEffect(() => {
-        dispatch(resetSeance());
-    },[]);
+        if (!session.id || !ticket.seanceId) {
+            navigate("/");
+        }
+
+        dispatch(buyTicket());
+
+        return () => dispatch(resetSeance());
+    }, []);
 
     return (
         <CinemaGo>
@@ -25,6 +34,11 @@ export default function MainTicket() {
                         hall={session.name}
                         time={session.time}
                     />
+                    {ticket.id &&
+                        <TicketQr
+                            code={`Билет: ${ticket.id}. Зал: ${session.name}. Время: ${session.time}. Места: ${seatsNumbers.join(', ')}`}
+                        />
+                    }
                     <p className="ticket__hint">Покажите QR-код нашему контроллеру для подтверждения бронирования.</p>
                     <p className="ticket__hint">Приятного просмотра!</p>
                 </div>
