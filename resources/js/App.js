@@ -1,9 +1,10 @@
 import React from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import MainMovie from "./components/CinemaGo/MainMovie";
-import MainSeance from "./components/CinemaGo/MainSeance";
-import MainBooking from "./components/CinemaGo/MainBooking";
-import MainTicket from "./components/CinemaGo/MainTicket";
+import MainMovie from "./components/Client/MainMovie";
+import MainSeance from "./components/Client/MainSeance";
+import MainBooking from "./components/Client/MainBooking";
+import MainTicket from "./components/Client/MainTicket";
+import Admin from "./components/Admin/Admin";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
                 <Route path="seance/:seanceId" element={<MainSeance/>}/>
                 <Route path="booking" element={<MainBooking/>}/>
                 <Route path="ticket" element={<MainTicket/>}/>
+                <Route path="admin" element={<Admin/>}/>
             </Routes>
         </BrowserRouter>
     );

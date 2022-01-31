@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {createTicket, getSeance} from "../../../reducers/seanceSlice";
-import CinemaGo from "../CinemaGo";
+import Client from "../Client";
 import SeanceInfo from "./SeanceInfo";
 import SeanceHall from "./SeanceHall";
 import Button from "../Button";
@@ -37,12 +37,12 @@ export default function MainSeance() {
     }
 
     return (
-        <CinemaGo>
+        <Client>
             <section className="buying">
                 <SeanceInfo/>
                 <SeanceHall callback={selectHandle}/>
                 <Button text={"Забронировать"} link={"/booking"} callback={submitHandle}/>
             </section>
-        </CinemaGo>
+        </Client>
     );
 }

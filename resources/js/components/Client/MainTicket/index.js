@@ -1,41 +1,48 @@
 import {useEffect} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import CinemaGo from "../CinemaGo";
+import {buyTicket, resetSeance} from "../../../reducers/seanceSlice";
+import Client from "../Client";
 import TicketHeader from "../TicketHeader";
-import Button from "../Button";
 import TicketInfo from "../TicketInfo";
+import TicketQr from "./TicketQr";
 
-export default function MainBooking() {
+export default function MainTicket() {
     const {session, seats, ticket} = useSelector((state) => state.seance);
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const seatsNumbers = seats.filter((seat) => ticket.seats.includes(seat.id)).map((seat) => seat.number);
 
     useEffect(() => {
         if (!session.id || !ticket.seanceId) {
-            navigate(-1);
+            navigate("/");
         }
+
+        dispatch(buyTicket());
+
+        return () => dispatch(resetSeance());
     }, []);
 
     return (
-        <CinemaGo>
+        <Client>
             <section className="ticket">
-                <TicketHeader text={"Вы выбрали билеты:"}/>
+                <TicketHeader text={"Электронный билет"}/>
                 <div className="ticket__info-wrapper">
                     <TicketInfo
                         film={session.title}
                         seats={seatsNumbers.join(', ')}
                         hall={session.name}
                         time={session.time}
-                        cost={ticket.cost}
                     />
-                    <Button text={"Получить код бронирования"} link={"/ticket"}/>
-                    <p className="ticket__hint">После оплаты билет будет доступен в этом окне, а также придёт вам на
-                        почту. Покажите QR-код нашему контроллёру у входа в зал.</p>
+                    {ticket.id &&
+                        <TicketQr
+                            code={`Билет: ${ticket.id}. Зал: ${session.name}. Время: ${session.time}. Места: ${seatsNumbers.join(', ')}`}
+                        />
+                    }
+                    <p className="ticket__hint">Покажите QR-код нашему контроллеру для подтверждения бронирования.</p>
                     <p className="ticket__hint">Приятного просмотра!</p>
                 </div>
             </section>
-        </CinemaGo>
+        </Client>
     );
 }

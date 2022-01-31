@@ -1,7 +1,7 @@
 import Header from "./Header";
 import Navigation from "./Navigation";
 
-export default function CinemaGo(props) {
+export default function Client(props) {
     return (
         <>
             <Header/>
