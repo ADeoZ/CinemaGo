@@ -287,6 +287,7 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
   position: relative;
   width: 20px;
   height: 20px;
+  margin-left: 10px;
   vertical-align: text-top;
 }
 .conf-step__button-trash::before {

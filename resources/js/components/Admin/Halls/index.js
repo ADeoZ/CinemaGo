@@ -1,22 +1,32 @@
 import SimpleButton from "../Buttons/SimpleButton";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {showPopup} from "../../../reducers/popupSlice";
+import {getHalls} from "../../../reducers/adminSlice";
+import {useEffect} from "react";
+import HallItem from "./HallItem";
 
 export default function Halls() {
+    const {halls} = useSelector((state) => state.admin);
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(getHalls());
+    },[]);
+
+    console.log('render halls');
     return (
         <div className="conf-step__wrapper">
             <p className="conf-step__paragraph">Доступные залы:</p>
             <ul className="conf-step__list">
-                <li>Зал 1
-                    <button className="conf-step__button conf-step__button-trash"/>
-                </li>
-                <li>Зал 2
-                    <button className="conf-step__button conf-step__button-trash"/>
-                </li>
+                {halls.map((hall) =>
+                    <HallItem
+                        id={hall.id}
+                        name={hall.name}
+                        key={hall.id}
+                    />
+                )}
             </ul>
-            <SimpleButton text={"Создать зал"} callback={() => dispatch(showPopup("addHall"))}/>
+            <SimpleButton text={"Создать зал"} callback={() => dispatch(showPopup({form: "addHall"}))}/>
         </div>
     );
 }

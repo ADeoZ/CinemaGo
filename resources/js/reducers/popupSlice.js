@@ -3,6 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const initialState = {
     active: false,
     form: "",
+    id: -1,
 };
 
 const popupSlice = createSlice({
@@ -10,7 +11,9 @@ const popupSlice = createSlice({
     initialState,
     reducers: {
         showPopup: (state, action) => {
-            state.form = action.payload;
+            const {form, id = -1} = action.payload;
+            state.form = form;
+            state.id = id;
             state.active = true;
         },
         closePopup: (state) => {

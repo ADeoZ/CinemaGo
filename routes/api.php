@@ -23,7 +23,7 @@ Route::get('/client/seats/{session}', [\App\Http\Controllers\ClientController::c
 
 Route::apiResource('/hall', \App\Http\Controllers\HallController::class);
 Route::apiResource('/film', \App\Http\Controllers\FilmController::class);
-Route::put('/seat/update', [\App\Http\Controllers\SeatController::class, 'updateMany']);
-Route::apiResource('/seat', \App\Http\Controllers\SeatController::class);
+Route::put('/seats/update', [\App\Http\Controllers\SeatController::class, 'updateMany']);
+Route::apiResource('/seats', \App\Http\Controllers\SeatController::class);
 Route::apiResource('/session', \App\Http\Controllers\SessionController::class);
 Route::apiResource('/ticket', \App\Http\Controllers\TicketController::class);
