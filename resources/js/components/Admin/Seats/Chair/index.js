@@ -1,27 +1,28 @@
 import classNames from "classnames";
 
 export default function Chair(props) {
-    const {type} = props;
+    const {status, callback} = props;
 
-    let typeClass;
-    switch (type) {
+    let statusClass;
+    switch (status) {
         case "standard":
-            typeClass = "conf-step__chair_standard";
+            statusClass = "conf-step__chair_standard";
             break;
         case "disabled":
-            typeClass = "conf-step__chair_disabled";
+            statusClass = "conf-step__chair_disabled";
             break;
         case "vip":
-            typeClass = "conf-step__chair_vip";
+            statusClass = "conf-step__chair_vip";
             break;
         default:
-            typeClass = "conf-step__chair_standard";
+            statusClass = "conf-step__chair_standard";
             break;
     }
 
     return (
         <span
-            className={classNames("conf-step__chair", typeClass)}
+            className={classNames("conf-step__chair", statusClass)}
+            onClick={callback}
         />
     );
 }

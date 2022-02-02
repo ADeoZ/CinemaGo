@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SeatRequest;
 use App\Models\Hall;
 use App\Models\Seat;
+use App\Models\Session;
 use Illuminate\Http\Response;
 
 class SeatController extends Controller
@@ -27,8 +28,13 @@ class SeatController extends Controller
      */
     public function store(SeatRequest $request)
     {
+        $hallId = $request->validated()['seats'][0]['hall_id'];
+        $hall = Hall::findOrFail($hallId);
+        Seat::whereHallId($hall->id)->delete();
+        Session::whereHallId($hall->id)->delete();
+
         foreach ($request->validated()['seats'] as $seat) {
-            Seat::create($seat);
+             Seat::create($seat);
         }
         return response(true, 201);
     }

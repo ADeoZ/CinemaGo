@@ -1,13 +1,14 @@
-import {useSelector} from "react-redux";
-import SeanceHallSeat from "../../../Client/MainSeance/SeanceHall/SeanceHallSeat";
+import {useDispatch, useSelector} from "react-redux";
 import Chair from "../Chair";
+import {changeSeatStatus} from "../../../../reducers/adminSlice";
 
 export default function SeatsScheme(props) {
     const {seats} = useSelector((state) => state.admin);
-    const {rowSeats} = props;
+    const {rows} = props;
+    const dispatch = useDispatch();
 
-    const seatsInRow = seats.length / rowSeats;
     // делим места по рядам
+    const seatsInRow = seats.length / rows;
     const seatsByRow = seats.reduce((result, seat, index) => {
         const chunkIndex = Math.floor(index / seatsInRow);
         if (!result[chunkIndex]) {
@@ -17,7 +18,16 @@ export default function SeatsScheme(props) {
         return result
     }, []);
 
-    console.log(seats);
+    const handleClick = (id) => {
+        // выбираем следующий тип статуса места
+        const seatStatus = seats.find((seat) => seat.id === id).status;
+        const allStatus = ["standard", "vip", "disabled"];
+        const statusIndex = allStatus.indexOf(seatStatus);
+
+        dispatch(changeSeatStatus({id, "status": allStatus[(statusIndex + 1) % allStatus.length]}));
+    }
+
+    console.log('- 2.1 render scheme');
     return (
         <div className="conf-step__hall">
             <div className="conf-step__hall-wrapper">
@@ -25,7 +35,8 @@ export default function SeatsScheme(props) {
                     <div className="conf-step__row" key={index}>
                         {row.map((seat) =>
                             <Chair
-                                type={seat.status}
+                                status={seat.status}
+                                callback={() => handleClick(seat.id)}
                                 key={seat.id}
                             />)}
                     </div>

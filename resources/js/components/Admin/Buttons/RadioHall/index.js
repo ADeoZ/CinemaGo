@@ -1,4 +1,4 @@
-export default function SeatsHall(props) {
+export default function RadioHall(props) {
     const {name, checked, callback} = props;
 
     const handleChange = () => {
@@ -10,7 +10,6 @@ export default function SeatsHall(props) {
             <input
                 type="radio"
                 className="conf-step__radio"
-                name="chairs-hall"
                 value={name}
                 checked={checked}
                 onChange={() => handleChange()}

@@ -13,7 +13,7 @@ export default function Halls() {
         dispatch(getHalls());
     },[]);
 
-    console.log('render halls');
+    console.log('1. render halls');
     return (
         <div className="conf-step__wrapper">
             <p className="conf-step__paragraph">Доступные залы:</p>
