@@ -1872,33 +1872,125 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ AddMovie)
 /* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../reducers/adminSlice */ "./resources/js/reducers/adminSlice.js");
+/* harmony import */ var _reducers_popupSlice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../reducers/popupSlice */ "./resources/js/reducers/popupSlice.js");
+/* harmony import */ var _CloseOk__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../CloseOk */ "./resources/js/components/Admin/Popup/CloseOk/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
 
 
 function AddMovie() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
-    method: "post",
+  var EMPTY_STATE = {
+    title: "",
+    description: "",
+    duration: "",
+    country: ""
+  };
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(EMPTY_STATE),
+      _useState2 = _slicedToArray(_useState, 2),
+      form = _useState2[0],
+      setForm = _useState2[1];
+
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+
+  var handleChange = function handleChange(_ref) {
+    var target = _ref.target;
+    var name = target.name;
+    var value = target.value;
+    setForm(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, name, value));
+    });
+  };
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.createMovie)({
+      title: form.title,
+      description: form.description,
+      duration: form.duration,
+      country: form.country
+    }));
+    dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_3__.closePopup)());
+    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getMovies)());
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
     acceptCharset: "utf-8",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+    onSubmit: handleSubmit,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("label", {
       className: "conf-step__label conf-step__label-fullsize",
       htmlFor: "name",
-      children: ["\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0444\u0438\u043B\u044C\u043C\u0430", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+      children: ["\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0444\u0438\u043B\u044C\u043C\u0430", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
         className: "conf-step__input",
         type: "text",
         placeholder: "\u041D\u0430\u043F\u0440\u0438\u043C\u0435\u0440, \xAB\u0413\u0440\u0430\u0436\u0434\u0430\u043D\u0438\u043D \u041A\u0435\u0439\u043D\xBB",
-        name: "name",
+        name: "title",
+        value: form.title,
+        onChange: handleChange,
         required: true
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-      className: "conf-step__buttons text-center",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
-        type: "submit",
-        value: "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0444\u0438\u043B\u044C\u043C",
-        className: "conf-step__button conf-step__button-accent"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
-        className: "conf-step__button conf-step__button-regular",
-        children: "\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("label", {
+      className: "conf-step__label conf-step__label-fullsize",
+      htmlFor: "description",
+      children: ["\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+        className: "conf-step__input",
+        type: "text",
+        name: "description",
+        value: form.description,
+        onChange: handleChange,
+        required: true
       })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("label", {
+      className: "conf-step__label conf-step__label-fullsize",
+      htmlFor: "duration",
+      children: ["\u0414\u043B\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+        className: "conf-step__input",
+        type: "text",
+        placeholder: "120",
+        name: "duration",
+        value: form.duration,
+        onChange: handleChange,
+        required: true
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("label", {
+      className: "conf-step__label conf-step__label-fullsize",
+      htmlFor: "country",
+      children: ["\u0421\u0442\u0440\u0430\u043D\u0430", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+        className: "conf-step__input",
+        type: "text",
+        placeholder: "\u041D\u0430\u043F\u0440\u0438\u043C\u0435\u0440, \u0420\u043E\u0441\u0441\u0438\u044F",
+        name: "country",
+        value: form.country,
+        onChange: handleChange,
+        required: true
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_CloseOk__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      text: "Добавить фильм"
     })]
   });
 }
@@ -2333,6 +2425,291 @@ function Prices() {
 
 /***/ }),
 
+/***/ "./resources/js/components/Admin/Seances/Movies/MovieItem/index.js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/Admin/Seances/Movies/MovieItem/index.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MovieItem)
+/* harmony export */ });
+/* harmony import */ var _customHooks_useCountableEndings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../customHooks/useCountableEndings */ "./resources/js/components/customHooks/useCountableEndings.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function MovieItem(props) {
+  var img = props.img,
+      title = props.title,
+      duration = props.duration;
+
+  var _useCountableEndings = (0,_customHooks_useCountableEndings__WEBPACK_IMPORTED_MODULE_0__.useCountableEndings)(duration, ['минут', 'минуты', 'минута']),
+      _useCountableEndings2 = _slicedToArray(_useCountableEndings, 2),
+      filmDuration = _useCountableEndings2[0],
+      durationEnding = _useCountableEndings2[1];
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "conf-step__movie",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+      className: "conf-step__movie-poster",
+      alt: "poster",
+      src: "../images/".concat(img)
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+      className: "conf-step__movie-title",
+      children: title
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+      className: "conf-step__movie-duration",
+      children: [filmDuration, " ", durationEnding]
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Seances/Movies/index.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/Admin/Seances/Movies/index.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Movies)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../reducers/adminSlice */ "./resources/js/reducers/adminSlice.js");
+/* harmony import */ var _MovieItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MovieItem */ "./resources/js/components/Admin/Seances/Movies/MovieItem/index.js");
+/* harmony import */ var _Buttons_SimpleButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Buttons/SimpleButton */ "./resources/js/components/Admin/Buttons/SimpleButton/index.js");
+/* harmony import */ var _reducers_popupSlice__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../reducers/popupSlice */ "./resources/js/reducers/popupSlice.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+
+function Movies() {
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
+    return state.admin;
+  }),
+      movies = _useSelector.movies;
+
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useDispatch)();
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getMovies)());
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+      className: "conf-step__paragraph",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Buttons_SimpleButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        text: "Добавить фильм",
+        callback: function callback() {
+          return dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_5__.showPopup)({
+            form: "addMovie"
+          }));
+        }
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "conf-step__movies",
+      children: movies.map(function (movie) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_MovieItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          img: "poster".concat(Math.floor(Math.random() * 5) + 1, ".jpg"),
+          title: movie.title,
+          duration: movie.duration
+        }, movie.id);
+      })
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Seances/SeancesHalls/SeancesHallItem/HallTimeline/TimelineMovie/index.js":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Seances/SeancesHalls/SeancesHallItem/HallTimeline/TimelineMovie/index.js ***!
+  \****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TimelineMovie)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+function TimelineMovie(props) {
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
+    return state.admin;
+  }),
+      movies = _useSelector.movies;
+
+  var id = props.id,
+      time = props.time;
+  var movie = movies.find(function (movie) {
+    return movie.id === +id;
+  });
+  var width = movie.duration / 60 * 30;
+  var timeFormatted = new Date('01.01.70 ' + time);
+  var shift = (timeFormatted.getHours() + timeFormatted.getMinutes() / 60) * 30;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "conf-step__seances-movie",
+    style: {
+      width: "".concat(width, "px"),
+      backgroundColor: "rgb(133, 255, 137)",
+      left: "".concat(shift, "px")
+    },
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+      className: "conf-step__seances-movie-title",
+      children: movie.title
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+      className: "conf-step__seances-movie-start",
+      children: time
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Seances/SeancesHalls/SeancesHallItem/HallTimeline/index.js":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Seances/SeancesHalls/SeancesHallItem/HallTimeline/index.js ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ HallTimeline)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _TimelineMovie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TimelineMovie */ "./resources/js/components/Admin/Seances/SeancesHalls/SeancesHallItem/HallTimeline/TimelineMovie/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+function HallTimeline(props) {
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
+    return state.admin;
+  }),
+      seances = _useSelector.seances;
+
+  var hall = props.hall;
+  var hallSeances = seances.filter(function (seance) {
+    return +seance.hall_id === hall;
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "conf-step__seances-timeline",
+    children: hallSeances.map(function (seance) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_TimelineMovie__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        id: seance.film_id,
+        time: seance.time
+      }, seance.id);
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Seances/SeancesHalls/SeancesHallItem/index.js":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Seances/SeancesHalls/SeancesHallItem/index.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SeancesHallItem)
+/* harmony export */ });
+/* harmony import */ var _HallTimeline__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HallTimeline */ "./resources/js/components/Admin/Seances/SeancesHalls/SeancesHallItem/HallTimeline/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+function SeancesHallItem(props) {
+  var id = props.id,
+      name = props.name;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "conf-step__seances-hall",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+      className: "conf-step__seances-title",
+      children: name
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_HallTimeline__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      hall: id
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Seances/SeancesHalls/index.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/Admin/Seances/SeancesHalls/index.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SeancesHalls)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../reducers/adminSlice */ "./resources/js/reducers/adminSlice.js");
+/* harmony import */ var _SeancesHallItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SeancesHallItem */ "./resources/js/components/Admin/Seances/SeancesHalls/SeancesHallItem/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+function SeancesHalls() {
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
+    return state.admin;
+  }),
+      seances = _useSelector.seances,
+      halls = _useSelector.halls;
+
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useDispatch)();
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getSeances)());
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    className: "conf-step__seances",
+    children: halls.map(function (hall) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SeancesHallItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        id: hall.id,
+        name: hall.name
+      }, hall.id);
+    })
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/Admin/Seances/index.js":
 /*!********************************************************!*\
   !*** ./resources/js/components/Admin/Seances/index.js ***!
@@ -2344,117 +2721,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Seances)
 /* harmony export */ });
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _reducers_popupSlice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../reducers/popupSlice */ "./resources/js/reducers/popupSlice.js");
-/* harmony import */ var _Buttons_CancelSave__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Buttons/CancelSave */ "./resources/js/components/Admin/Buttons/CancelSave/index.js");
-/* harmony import */ var _Buttons_SimpleButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Buttons/SimpleButton */ "./resources/js/components/Admin/Buttons/SimpleButton/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
+/* harmony import */ var _Buttons_CancelSave__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Buttons/CancelSave */ "./resources/js/components/Admin/Buttons/CancelSave/index.js");
+/* harmony import */ var _Movies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Movies */ "./resources/js/components/Admin/Seances/Movies/index.js");
+/* harmony import */ var _SeancesHalls__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SeancesHalls */ "./resources/js/components/Admin/Seances/SeancesHalls/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
 
 
 function Seances() {
-  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useDispatch)();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "conf-step__wrapper",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-      className: "conf-step__paragraph",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Buttons_SimpleButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        text: "Добавить фильм",
-        callback: function callback() {
-          return dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_1__.showPopup)("addMovie"));
-        }
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      className: "conf-step__movies",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "conf-step__movie",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-          className: "conf-step__movie-poster",
-          alt: "poster",
-          src: "../images/poster1.jpg"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
-          className: "conf-step__movie-title",
-          children: "\u0417\u0432\u0451\u0437\u0434\u043D\u044B\u0435 \u0432\u043E\u0439\u043D\u044B XXIII: \u0410\u0442\u0430\u043A\u0430 \u043A\u043B\u043E\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0445 \u043A\u043B\u043E\u043D\u043E\u0432"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-          className: "conf-step__movie-duration",
-          children: "130 \u043C\u0438\u043D\u0443\u0442"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "conf-step__movie",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-          className: "conf-step__movie-poster",
-          alt: "poster",
-          src: "../images/poster2.jpg"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
-          className: "conf-step__movie-title",
-          children: "\u041C\u0438\u0441\u0441\u0438\u044F \u0432\u044B\u043F\u043E\u043B\u043D\u0438\u043C\u0430"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-          className: "conf-step__movie-duration",
-          children: "120 \u043C\u0438\u043D\u0443\u0442"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "conf-step__movie",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-          className: "conf-step__movie-poster",
-          alt: "poster",
-          src: "../images/poster3.jpg"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
-          className: "conf-step__movie-title",
-          children: "\u0421\u0435\u0440\u0430\u044F \u043F\u0430\u043D\u0442\u0435\u0440\u0430"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-          className: "conf-step__movie-duration",
-          children: "90 \u043C\u0438\u043D\u0443\u0442"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "conf-step__movie",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-          className: "conf-step__movie-poster",
-          alt: "poster",
-          src: "../images/poster4.jpg"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
-          className: "conf-step__movie-title",
-          children: "\u0414\u0432\u0438\u0436\u0435\u043D\u0438\u0435 \u0432\u0431\u043E\u043A"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-          className: "conf-step__movie-duration",
-          children: "95 \u043C\u0438\u043D\u0443\u0442"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "conf-step__movie",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-          className: "conf-step__movie-poster",
-          alt: "poster",
-          src: "../images/poster5.jpg"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
-          className: "conf-step__movie-title",
-          children: "\u041A\u043E\u0442 \u0414\u0430 \u0412\u0438\u043D\u0447\u0438"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-          className: "conf-step__movie-duration",
-          children: "100 \u043C\u0438\u043D\u0443\u0442"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      className: "conf-step__seances",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "conf-step__seances-hall",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
-          className: "conf-step__seances-title",
-          children: "\u0417\u0430\u043B 1"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "conf-step__seances-timeline"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "conf-step__seances-hall",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
-          className: "conf-step__seances-title",
-          children: "\u0417\u0430\u043B 2"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "conf-step__seances-timeline"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Buttons_CancelSave__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Movies__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SeancesHalls__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Buttons_CancelSave__WEBPACK_IMPORTED_MODULE_0__["default"], {
       cancel: function cancel() {
         return console.log('cancel');
       },
@@ -4043,6 +4322,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getSeats": () => (/* binding */ getSeats),
 /* harmony export */   "createSeats": () => (/* binding */ createSeats),
 /* harmony export */   "updateSeats": () => (/* binding */ updateSeats),
+/* harmony export */   "getMovies": () => (/* binding */ getMovies),
+/* harmony export */   "createMovie": () => (/* binding */ createMovie),
+/* harmony export */   "getSeances": () => (/* binding */ getSeances),
 /* harmony export */   "createScheme": () => (/* binding */ createScheme),
 /* harmony export */   "selectHallScheme": () => (/* binding */ selectHallScheme),
 /* harmony export */   "changeHallSize": () => (/* binding */ changeHallSize),
@@ -4065,7 +4347,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var initialState = {
   halls: [],
   seats: [],
-  selectedHallScheme: {}
+  selectedHallScheme: {},
+  movies: [],
+  seances: []
 };
 var getHalls = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)("admin/getHalls", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
   var response;
@@ -4287,6 +4571,92 @@ var updateSeats = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncTh
     return _ref9.apply(this, arguments);
   };
 }());
+var getMovies = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)("admin/getMovies", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8() {
+  var response;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+    while (1) {
+      switch (_context8.prev = _context8.next) {
+        case 0:
+          _context8.next = 2;
+          return fetch("/api/film");
+
+        case 2:
+          response = _context8.sent;
+          _context8.next = 5;
+          return response.json();
+
+        case 5:
+          return _context8.abrupt("return", _context8.sent);
+
+        case 6:
+        case "end":
+          return _context8.stop();
+      }
+    }
+  }, _callee8);
+})));
+var createMovie = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)("admin/createMovie", /*#__PURE__*/function () {
+  var _ref12 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee9(_ref11) {
+    var title, description, duration, country, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee9$(_context9) {
+      while (1) {
+        switch (_context9.prev = _context9.next) {
+          case 0:
+            title = _ref11.title, description = _ref11.description, duration = _ref11.duration, country = _ref11.country;
+            _context9.next = 3;
+            return fetch("/api/film", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                title: title,
+                description: description,
+                duration: duration,
+                country: country
+              })
+            });
+
+          case 3:
+            response = _context9.sent;
+            return _context9.abrupt("return", response.ok);
+
+          case 5:
+          case "end":
+            return _context9.stop();
+        }
+      }
+    }, _callee9);
+  }));
+
+  return function (_x9) {
+    return _ref12.apply(this, arguments);
+  };
+}());
+var getSeances = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createAsyncThunk)("admin/getSeances", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee10() {
+  var response;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee10$(_context10) {
+    while (1) {
+      switch (_context10.prev = _context10.next) {
+        case 0:
+          _context10.next = 2;
+          return fetch("/api/session");
+
+        case 2:
+          response = _context10.sent;
+          _context10.next = 5;
+          return response.json();
+
+        case 5:
+          return _context10.abrupt("return", _context10.sent);
+
+        case 6:
+        case "end":
+          return _context10.stop();
+      }
+    }
+  }, _callee10);
+})));
 var adminSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice)({
   name: "admin",
   initialState: initialState,
@@ -4319,6 +4689,10 @@ var adminSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice)({
       state.halls = action.payload;
     }).addCase(getSeats.fulfilled, function (state, action) {
       state.seats = action.payload;
+    }).addCase(getMovies.fulfilled, function (state, action) {
+      state.movies = action.payload;
+    }).addCase(getSeances.fulfilled, function (state, action) {
+      state.seances = action.payload;
     });
   }
 });

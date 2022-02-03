@@ -50,4 +50,12 @@ php artisan migrate
 ```
 php artisan db:seed
 ```
-
+5. Установка пакетов из package.json
+```
+npm install
+```
+6. Запуск проекта локально:
+```
+npm run start
+php artisan serve
+```

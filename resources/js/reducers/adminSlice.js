@@ -5,6 +5,8 @@ const initialState = {
     halls: [],
     seats: [],
     selectedHallScheme: {},
+    movies: [],
+    seances: [],
 };
 
 export const getHalls = createAsyncThunk(
@@ -12,7 +14,8 @@ export const getHalls = createAsyncThunk(
     async () => {
         const response = await fetch(`/api/hall`);
         return await response.json();
-    });
+    }
+);
 
 export const createHall = createAsyncThunk(
     "admin/createHall",
@@ -81,6 +84,34 @@ export const updateSeats = createAsyncThunk(
     }
 );
 
+export const getMovies = createAsyncThunk(
+    "admin/getMovies",
+    async () => {
+        const response = await fetch(`/api/film`);
+        return await response.json();
+    }
+);
+
+export const createMovie = createAsyncThunk(
+    "admin/createMovie",
+    async ({title, description, duration, country}) => {
+        const response = await fetch(`/api/film`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({title, description, duration, country}),
+        });
+        return response.ok;
+    }
+);
+
+export const getSeances = createAsyncThunk(
+    "admin/getSeances",
+    async () => {
+        const response = await fetch(`/api/session`);
+        return await response.json();
+    }
+);
+
 const adminSlice = createSlice({
     name: "admin",
     initialState,
@@ -109,6 +140,12 @@ const adminSlice = createSlice({
             })
             .addCase(getSeats.fulfilled, (state, action) => {
                 state.seats = action.payload;
+            })
+            .addCase(getMovies.fulfilled, (state, action) => {
+                state.movies = action.payload;
+            })
+            .addCase(getSeances.fulfilled, (state, action) => {
+                state.seances = action.payload;
             })
     },
 });
