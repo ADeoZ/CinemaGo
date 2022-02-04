@@ -104,11 +104,43 @@ export const createMovie = createAsyncThunk(
     }
 );
 
+export const deleteMovie = createAsyncThunk(
+    "admin/deleteMovie",
+    async (id) => {
+        const response = await fetch(`/api/film/${id}`, {
+            method: "DELETE",
+        });
+        return response.ok;
+    }
+);
+
 export const getSeances = createAsyncThunk(
     "admin/getSeances",
     async () => {
         const response = await fetch(`/api/session`);
         return await response.json();
+    }
+);
+
+export const createSeance = createAsyncThunk(
+    "admin/createSeance",
+    async ({time, hall_id, film_id}) => {
+        const response = await fetch(`/api/session`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({time, hall_id, film_id}),
+        });
+        return response.ok;
+    }
+);
+
+export const deleteSeance = createAsyncThunk(
+    "admin/deleteSeance",
+    async (id) => {
+        const response = await fetch(`/api/session/${id}`, {
+            method: "DELETE",
+        });
+        return response.ok;
     }
 );
 

@@ -463,6 +463,17 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
   margin-left: 10px;
 }
 
+.conf-step__close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  background-image: url(/images/close.png?e6bf2a5c2fe1361d1a56a65c76d25003);
+  background-size: 18px 18px;
+  display: none;
+}
+
 .conf-step__movies {
   display: flex;
   flex-wrap: wrap;
@@ -477,6 +488,14 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
   border: 1px solid rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
   cursor: pointer;
+}
+.conf-step__movies .conf-step__movie .conf-step__close {
+  width: 18px;
+  height: 18px;
+  background-size: 18px 18px;
+}
+.conf-step__movies .conf-step__movie:hover .conf-step__close {
+  display: block;
 }
 .conf-step__movies .conf-step__movie:nth-of-type(3n + 2) {
   margin: 0 15px;
@@ -535,6 +554,7 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
   font-weight: 500;
   font-size: 1.6rem;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .conf-step__seances-timeline {
@@ -552,7 +572,8 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
   border: 1px solid rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
   padding: 10px 2px 10px 10px;
-  opacity: 0.8;
+  opacity: 0.9;
+  cursor: pointer;
 }
 .conf-step__seances-movie .conf-step__seances-movie-title {
   overflow: hidden;
@@ -566,6 +587,14 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
   color: #848484;
   font-size: 1.2rem;
 }
+.conf-step__seances-movie .conf-step__close {
+  width: 12px;
+  height: 12px;
+  background-size: 12px 12px;
+}
+.conf-step__seances-movie:hover .conf-step__close {
+  display: block;
+}
 .conf-step__seances-movie::before {
   content: "";
   position: absolute;
@@ -575,6 +604,33 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
   bottom: -17px;
   left: 0;
   background-color: #848484;
+}
+.conf-step__seances-movie-1 {
+  background-color: #caff85;
+}
+.conf-step__seances-movie-2 {
+  background-color: #85ff89;
+}
+.conf-step__seances-movie-3 {
+  background-color: #85ffd3;
+}
+.conf-step__seances-movie-4 {
+  background-color: #85e2ff;
+}
+.conf-step__seances-movie-5 {
+  background-color: #8599ff;
+}
+.conf-step__seances-movie-6 {
+  background-color: #ba85ff;
+}
+.conf-step__seances-movie-7 {
+  background-color: #ff85fb;
+}
+.conf-step__seances-movie-8 {
+  background-color: #ff85b1;
+}
+.conf-step__seances-movie-9 {
+  background-color: #ffa285;
 }
 
 .login {

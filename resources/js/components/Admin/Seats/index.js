@@ -54,7 +54,6 @@ export default function Seats() {
         dispatch(selectHallScheme({}));
     }
 
-    console.log('2. render seats');
     return (
         <div className="conf-step__wrapper">
             <p className="conf-step__paragraph">Выберите зал для конфигурации:</p>

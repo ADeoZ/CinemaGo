@@ -2,35 +2,35 @@ import {useSelector} from "react-redux";
 import TimelineMovie from "./TimelineMovie";
 
 export default function HallTimeline(props) {
-    const {seances} = useSelector((state) => state.admin);
+    const {seances, movies} = useSelector((state) => state.admin);
     const {hall} = props;
 
     const hallSeances = seances.filter((seance) => +seance.hall_id === hall);
+    hallSeances.sort((a, b) => Date.parse('01.01.70 ' + a.time) - Date.parse('01.01.70 ' + b.time));
+
+    // // вычисляем пересечения между сеансами
+    // console.log('зал ' + hall, hallSeances);
+    // const intersections = [];
+    // for (let i = 0; i < hallSeances.length; i++) {
+    //     const duration = movies.find((movie) => movie.id === +hallSeances[i].film_id).duration;
+    //     const timeStart = Date.parse('01.01.70 ' + hallSeances[i].time);
+    //     const timeEnd = timeStart + duration * 60000;
+    //     console.log(new Date(timeStart).getHours() + ":" + new Date(timeStart).getMinutes(), new Date(timeEnd).getHours() + ":" + new Date(timeEnd).getMinutes());
+    //     if (hallSeances[i - 1]) {
+    //
+    //     }
+    // }
 
     return (
         <div className="conf-step__seances-timeline">
             {hallSeances.map((seance) =>
                 <TimelineMovie
                     id={seance.film_id}
+                    seance={seance.id}
                     time={seance.time}
                     key={seance.id}
                 />
             )}
-            {/*<div className="conf-step__seances-movie"*/}
-            {/*     style={{width: "60px", backgroundColor: "rgb(133, 255, 137)", left: 0}}>*/}
-            {/*    <p className="conf-step__seances-movie-title">Миссия выполнима</p>*/}
-            {/*    <p className="conf-step__seances-movie-start">00:00</p>*/}
-            {/*</div>*/}
-            {/*<div className="conf-step__seances-movie"*/}
-            {/*     style={{width: "60px", backgroundColor: "rgb(133, 255, 137)", left: "360px"}}>*/}
-            {/*    <p className="conf-step__seances-movie-title">Миссия выполнима</p>*/}
-            {/*    <p className="conf-step__seances-movie-start">12:00</p>*/}
-            {/*</div>*/}
-            {/*<div className="conf-step__seances-movie"*/}
-            {/*     style={{width: "65px", backgroundColor: "rgb(202, 255, 133)", left: "420px"}}>*/}
-            {/*    <p className="conf-step__seances-movie-title">Звёздные войны XXIII: Атака клонированных клонов</p>*/}
-            {/*    <p className="conf-step__seances-movie-start">14:00</p>*/}
-            {/*</div>*/}
         </div>
     );
 }

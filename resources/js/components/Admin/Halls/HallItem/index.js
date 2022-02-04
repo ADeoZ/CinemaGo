@@ -9,7 +9,7 @@ export default function HallItem(props) {
         <li>{name}
             <button
                 className="conf-step__button conf-step__button-trash"
-                onClick={() => dispatch(showPopup({form: "deleteHall", id}))}
+                onClick={() => dispatch(showPopup({title: "Удаление зала", form: "deleteHall", id}))}
             />
         </li>
     );

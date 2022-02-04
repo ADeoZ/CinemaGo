@@ -11,9 +11,8 @@ export default function Halls() {
 
     useEffect(() => {
         dispatch(getHalls());
-    },[]);
+    }, []);
 
-    console.log('1. render halls');
     return (
         <div className="conf-step__wrapper">
             <p className="conf-step__paragraph">Доступные залы:</p>
@@ -26,7 +25,10 @@ export default function Halls() {
                     />
                 )}
             </ul>
-            <SimpleButton text={"Создать зал"} callback={() => dispatch(showPopup({form: "addHall"}))}/>
+            <SimpleButton
+                text={"Создать зал"}
+                callback={() => dispatch(showPopup({title: "Добавление зала", form: "addHall"}))}
+            />
         </div>
     );
 }

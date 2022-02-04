@@ -18,12 +18,13 @@ export default function Movies() {
             <p className="conf-step__paragraph">
                 <SimpleButton
                     text={"Добавить фильм"}
-                    callback={() => dispatch(showPopup({form: "addMovie"}))}
+                    callback={() => dispatch(showPopup({title: "Добавление фильма", form: "addMovie"}))}
                 />
             </p>
             <div className="conf-step__movies">
                 {movies.map((movie) =>
                     <MovieItem
+                        id={movie.id}
                         img={`poster${Math.floor(Math.random() * 5) + 1}.jpg`}
                         title={movie.title}
                         duration={movie.duration}

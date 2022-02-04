@@ -5,11 +5,12 @@ import classNames from "classnames";
 import {closePopup} from "../../../reducers/popupSlice";
 import DeleteHall from "./DeleteHall";
 import AddMovie from "./AddMovie";
+import DeleteMovie from "./DeleteMovie";
 import AddSeance from "./AddSeance";
 import DeleteSeance from "./DeleteSeance";
 
 export default function Popup() {
-    const {active, form} = useSelector((state) => state.popup);
+    const {active, title, form} = useSelector((state) => state.popup);
     const dispatch = useDispatch();
 
     return (
@@ -18,10 +19,9 @@ export default function Popup() {
                 <div className="popup__content">
                     <div className="popup__header">
                         <h2 className="popup__title">
-                            Добавление зала
+                            {title}
                             <a
                                 className="popup__dismiss"
-                                href="#"
                                 onClick={() => dispatch(closePopup())}
                             >
                                 <img src={closeImg} alt="Закрыть"/>
@@ -32,6 +32,7 @@ export default function Popup() {
                         {form === "addHall" && <AddHall/>}
                         {form === "deleteHall" && <DeleteHall/>}
                         {form === "addMovie" && <AddMovie/>}
+                        {form === "deleteMovie" && <DeleteMovie/>}
                         {form === "addSeance" && <AddSeance/>}
                         {form === "deleteSeance" && <DeleteSeance/>}
                     </div>

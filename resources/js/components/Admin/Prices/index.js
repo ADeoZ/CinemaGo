@@ -26,7 +26,6 @@ export default function Prices() {
         dispatch(getHalls());
     }
 
-    console.log('3. render prices');
     return (
         <div className="conf-step__wrapper">
             <p className="conf-step__paragraph">Выберите зал для конфигурации:</p>
