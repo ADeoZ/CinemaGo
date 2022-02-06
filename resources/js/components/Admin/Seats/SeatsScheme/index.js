@@ -27,7 +27,6 @@ export default function SeatsScheme(props) {
         dispatch(changeSeatStatus({id, "status": allStatus[(statusIndex + 1) % allStatus.length]}));
     }
 
-    console.log('- 2.1 render scheme');
     return (
         <div className="conf-step__hall">
             <div className="conf-step__hall-wrapper">

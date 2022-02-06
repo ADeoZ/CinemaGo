@@ -38,6 +38,7 @@ export default function Prices() {
                         key={hall.id}
                     />
                 )}
+                {halls.length === 0 &&  <p className="conf-step__paragraph">Залы отсутствуют</p>}
             </ul>
 
             {selectedHall &&

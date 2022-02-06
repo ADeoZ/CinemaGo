@@ -24,6 +24,7 @@ export default function Halls() {
                         key={hall.id}
                     />
                 )}
+                {halls.length === 0 &&  <p className="conf-step__paragraph">Залы отсутствуют</p>}
             </ul>
             <SimpleButton
                 text={"Создать зал"}
