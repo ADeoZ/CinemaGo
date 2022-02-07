@@ -5,6 +5,8 @@ import MainSeance from "./components/Client/MainSeance";
 import MainBooking from "./components/Client/MainBooking";
 import MainTicket from "./components/Client/MainTicket";
 import Admin from "./components/Admin/Admin";
+import Login from "./components/Admin/Login";
+import AuthRequired from "./components/Admin/AuthRequired";
 
 
 function App() {
@@ -15,7 +17,18 @@ function App() {
                 <Route path="seance/:seanceId" element={<MainSeance/>}/>
                 <Route path="booking" element={<MainBooking/>}/>
                 <Route path="ticket" element={<MainTicket/>}/>
-                <Route path="admin" element={<Admin/>}/>
+                <Route path="admin/login" element={<Login/>}/>
+                {/*<AuthRequired>*/}
+                {/*    <Route path="admin" element={<Admin/>}/>*/}
+                {/*</AuthRequired>*/}
+                <Route
+                    path="admin"
+                    element={
+                        <AuthRequired>
+                            <Admin />
+                        </AuthRequired>
+                    }
+                />
             </Routes>
         </BrowserRouter>
     );

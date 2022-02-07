@@ -14,16 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// получение токена
+Route::post('/tokens/create', [\App\Http\Controllers\ApiTokenController::class, 'createToken']);
+
+// API администрирования
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::apiResource('/hall', \App\Http\Controllers\HallController::class);
+    Route::apiResource('/film', \App\Http\Controllers\FilmController::class);
+    Route::put('/seats/update', [\App\Http\Controllers\SeatController::class, 'updateMany']);
+    Route::apiResource('/seats', \App\Http\Controllers\SeatController::class);
+    Route::apiResource('/session', \App\Http\Controllers\SessionController::class);
 });
 
+// API клиентской части
 Route::get('/client/schedule', [\App\Http\Controllers\ClientController::class, 'schedule']);
 Route::get('/client/seats/{session}', [\App\Http\Controllers\ClientController::class, 'seatsAvailable']);
-
-Route::apiResource('/hall', \App\Http\Controllers\HallController::class);
-Route::apiResource('/film', \App\Http\Controllers\FilmController::class);
-Route::put('/seats/update', [\App\Http\Controllers\SeatController::class, 'updateMany']);
-Route::apiResource('/seats', \App\Http\Controllers\SeatController::class);
-Route::apiResource('/session', \App\Http\Controllers\SessionController::class);
 Route::apiResource('/ticket', \App\Http\Controllers\TicketController::class);
+

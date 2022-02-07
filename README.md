@@ -56,6 +56,6 @@ npm install
 ```
 6. Запуск проекта локально:
 ```
-npm run start
+npm run dev
 php artisan serve
 ```

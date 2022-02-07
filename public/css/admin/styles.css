@@ -399,7 +399,7 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
   left: 0;
   right: 0;
   z-index: 20;
-  width: 80px;
+  width: 100%;
   height: 42px;
   opacity: 0;
 }
@@ -769,4 +769,11 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
 }
 .conf-step__list_start .conf-step__custom-checkbox:disabled + label::before {
   background-color: #e9ecef;
+}
+
+.conf-step__error {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #B60000FF;
+  margin-top: 12px;
 }

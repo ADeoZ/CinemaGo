@@ -1429,14 +1429,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var _components_Client_MainMovie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Client/MainMovie */ "./resources/js/components/Client/MainMovie/index.js");
 /* harmony import */ var _components_Client_MainSeance__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Client/MainSeance */ "./resources/js/components/Client/MainSeance/index.js");
 /* harmony import */ var _components_Client_MainBooking__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Client/MainBooking */ "./resources/js/components/Client/MainBooking/index.js");
 /* harmony import */ var _components_Client_MainTicket__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Client/MainTicket */ "./resources/js/components/Client/MainTicket/index.js");
 /* harmony import */ var _components_Admin_Admin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Admin/Admin */ "./resources/js/components/Admin/Admin.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_Admin_Login__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Admin/Login */ "./resources/js/components/Admin/Login/index.js");
+/* harmony import */ var _components_Admin_AuthRequired__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Admin/AuthRequired */ "./resources/js/components/Admin/AuthRequired/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
@@ -1448,23 +1452,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function App() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Routes, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Routes, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
         path: "/",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Client_MainMovie__WEBPACK_IMPORTED_MODULE_1__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Client_MainMovie__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
         path: "seance/:seanceId",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Client_MainSeance__WEBPACK_IMPORTED_MODULE_2__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Client_MainSeance__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
         path: "booking",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Client_MainBooking__WEBPACK_IMPORTED_MODULE_3__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Client_MainBooking__WEBPACK_IMPORTED_MODULE_3__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
         path: "ticket",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Client_MainTicket__WEBPACK_IMPORTED_MODULE_4__["default"], {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Client_MainTicket__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+        path: "admin/login",
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Admin_Login__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
         path: "admin",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Admin_Admin__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Admin_AuthRequired__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Admin_Admin__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+        })
       })]
     })
   });
@@ -1527,6 +1536,48 @@ function Admin() {
       })]
     })]
   });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/AuthRequired/index.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/Admin/AuthRequired/index.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ AuthRequired)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+function AuthRequired(_ref) {
+  var children = _ref.children;
+
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
+    return state.auth;
+  }),
+      token = _useSelector.token;
+
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useLocation)();
+
+  if (!token) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Navigate, {
+      to: "/admin/login",
+      state: {
+        from: location
+      },
+      replace: true
+    });
+  }
+
+  return children;
 }
 
 /***/ }),
@@ -1766,6 +1817,153 @@ function Header() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
       className: "page-header__subtitle",
       children: "\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\u0440\u0440\u0441\u043A\u0430\u044F"
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Login/index.js":
+/*!******************************************************!*\
+  !*** ./resources/js/components/Admin/Login/index.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Login)
+/* harmony export */ });
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Header */ "./resources/js/components/Admin/Header/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var _reducers_authSlice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../reducers/authSlice */ "./resources/js/reducers/authSlice.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+function Login() {
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.auth;
+  }),
+      status = _useSelector.status;
+
+  var EMPTY_STATE = {
+    mail: "",
+    pwd: ""
+  };
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(EMPTY_STATE),
+      _useState2 = _slicedToArray(_useState, 2),
+      loginForm = _useState2[0],
+      setLoginForm = _useState2[1];
+
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    if (status === "success") {
+      dispatch((0,_reducers_authSlice__WEBPACK_IMPORTED_MODULE_3__.resetAuthStatus)());
+      navigate('/admin');
+    } else if (status === "error") {
+      setLoginForm(EMPTY_STATE);
+    }
+  }, [status]);
+
+  var handleChange = function handleChange(_ref) {
+    var target = _ref.target;
+    var name = target.name;
+    var value = target.value;
+    setLoginForm(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, name, value));
+    });
+  };
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    dispatch((0,_reducers_authSlice__WEBPACK_IMPORTED_MODULE_3__.getToken)({
+      email: loginForm.mail,
+      password: loginForm.pwd
+    }));
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Header__WEBPACK_IMPORTED_MODULE_0__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("main", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+        className: "login",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("header", {
+          className: "login__header",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+            className: "login__title",
+            children: "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u044F"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "login__wrapper",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
+            className: "login__form",
+            acceptCharset: "utf-8",
+            onSubmit: handleSubmit,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+              className: "login__label",
+              htmlFor: "mail",
+              children: ["E-mail", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                className: "login__input",
+                type: "mail",
+                placeholder: "admin@gmail.com",
+                name: "mail",
+                value: loginForm.mail,
+                onChange: handleChange,
+                required: true
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+              className: "login__label",
+              htmlFor: "pwd",
+              children: ["\u041F\u0430\u0440\u043E\u043B\u044C", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                className: "login__input",
+                type: "password",
+                placeholder: "admin",
+                name: "pwd",
+                value: loginForm.pwd,
+                onChange: handleChange,
+                required: true
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "text-center",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                value: "\u0410\u0432\u0442\u043E\u0440\u0438\u0437\u043E\u0432\u0430\u0442\u044C\u0441\u044F",
+                type: "submit",
+                className: "login__button"
+              })
+            })]
+          }), status === "error" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "conf-step__error text-center",
+            children: "\u041E\u0448\u0438\u0431\u043A\u0430 \u0430\u0432\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u0438!"
+          })]
+        })]
+      })
     })]
   });
 }
@@ -4697,41 +4895,56 @@ var initialState = {
   movies: [],
   seances: []
 };
-var getHalls = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/getHalls", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-  var response;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          _context.next = 2;
-          return fetch("/api/hall");
+var getHalls = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/getHalls", /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(_, _ref) {
+    var getState, token, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            getState = _ref.getState;
+            token = getState().auth.token;
+            _context.next = 4;
+            return fetch("/api/hall", {
+              headers: {
+                "Authorization": "Bearer ".concat(token)
+              }
+            });
 
-        case 2:
-          response = _context.sent;
-          _context.next = 5;
-          return response.json();
+          case 4:
+            response = _context.sent;
+            _context.next = 7;
+            return response.json();
 
-        case 5:
-          return _context.abrupt("return", _context.sent);
+          case 7:
+            return _context.abrupt("return", _context.sent);
 
-        case 6:
-        case "end":
-          return _context.stop();
+          case 8:
+          case "end":
+            return _context.stop();
+        }
       }
-    }
-  }, _callee);
-})));
+    }, _callee);
+  }));
+
+  return function (_x, _x2) {
+    return _ref2.apply(this, arguments);
+  };
+}());
 var createHall = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/createHall", /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(name) {
-    var response;
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(name, _ref3) {
+    var getState, token, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.next = 2;
+            getState = _ref3.getState;
+            token = getState().auth.token;
+            _context2.next = 4;
             return fetch("/api/hall", {
               method: "POST",
               headers: {
+                "Authorization": "Bearer ".concat(token),
                 "Content-Type": "application/json"
               },
               body: JSON.stringify({
@@ -4739,11 +4952,11 @@ var createHall = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThu
               })
             });
 
-          case 2:
+          case 4:
             response = _context2.sent;
             return _context2.abrupt("return", response.ok);
 
-          case 4:
+          case 6:
           case "end":
             return _context2.stop();
         }
@@ -4751,31 +4964,34 @@ var createHall = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThu
     }, _callee2);
   }));
 
-  return function (_x) {
-    return _ref2.apply(this, arguments);
+  return function (_x3, _x4) {
+    return _ref4.apply(this, arguments);
   };
 }());
 var updateHall = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/updateHall", /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(hall) {
-    var response;
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(hall, _ref5) {
+    var getState, token, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            _context3.next = 2;
+            getState = _ref5.getState;
+            token = getState().auth.token;
+            _context3.next = 4;
             return fetch("/api/hall/".concat(hall.id), {
               method: "PUT",
               headers: {
+                "Authorization": "Bearer ".concat(token),
                 "Content-Type": "application/json"
               },
               body: JSON.stringify(hall)
             });
 
-          case 2:
+          case 4:
             response = _context3.sent;
             return _context3.abrupt("return", response.ok);
 
-          case 4:
+          case 6:
           case "end":
             return _context3.stop();
         }
@@ -4783,27 +4999,32 @@ var updateHall = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThu
     }, _callee3);
   }));
 
-  return function (_x2) {
-    return _ref3.apply(this, arguments);
+  return function (_x5, _x6) {
+    return _ref6.apply(this, arguments);
   };
 }());
 var deleteHall = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/deleteHall", /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id) {
-    var response;
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id, _ref7) {
+    var getState, token, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            _context4.next = 2;
+            getState = _ref7.getState;
+            token = getState().auth.token;
+            _context4.next = 4;
             return fetch("/api/hall/".concat(id), {
-              method: "DELETE"
+              method: "DELETE",
+              headers: {
+                "Authorization": "Bearer ".concat(token)
+              }
             });
 
-          case 2:
+          case 4:
             response = _context4.sent;
             return _context4.abrupt("return", response.ok);
 
-          case 4:
+          case 6:
           case "end":
             return _context4.stop();
         }
@@ -4811,29 +5032,35 @@ var deleteHall = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThu
     }, _callee4);
   }));
 
-  return function (_x3) {
-    return _ref4.apply(this, arguments);
+  return function (_x7, _x8) {
+    return _ref8.apply(this, arguments);
   };
 }());
 var getSeats = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/getSeats", /*#__PURE__*/function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id) {
-    var response;
+  var _ref10 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(id, _ref9) {
+    var getState, token, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            _context5.next = 2;
-            return fetch("/api/seats/".concat(id));
+            getState = _ref9.getState;
+            token = getState().auth.token;
+            _context5.next = 4;
+            return fetch("/api/seats/".concat(id), {
+              headers: {
+                "Authorization": "Bearer ".concat(token)
+              }
+            });
 
-          case 2:
+          case 4:
             response = _context5.sent;
-            _context5.next = 5;
+            _context5.next = 7;
             return response.json();
 
-          case 5:
+          case 7:
             return _context5.abrupt("return", _context5.sent);
 
-          case 6:
+          case 8:
           case "end":
             return _context5.stop();
         }
@@ -4841,23 +5068,25 @@ var getSeats = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk
     }, _callee5);
   }));
 
-  return function (_x4) {
-    return _ref5.apply(this, arguments);
+  return function (_x9, _x10) {
+    return _ref10.apply(this, arguments);
   };
 }());
 var createSeats = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/createSeats", /*#__PURE__*/function () {
-  var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(_, _ref6) {
-    var getState, seats, response;
+  var _ref12 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(_, _ref11) {
+    var getState, token, seats, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            getState = _ref6.getState;
+            getState = _ref11.getState;
+            token = getState().auth.token;
             seats = getState().admin.seats;
-            _context6.next = 4;
+            _context6.next = 5;
             return fetch("/api/seats", {
               method: "POST",
               headers: {
+                "Authorization": "Bearer ".concat(token),
                 "Content-Type": "application/json"
               },
               body: JSON.stringify({
@@ -4865,11 +5094,11 @@ var createSeats = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncTh
               })
             });
 
-          case 4:
+          case 5:
             response = _context6.sent;
             return _context6.abrupt("return", response.ok);
 
-          case 6:
+          case 7:
           case "end":
             return _context6.stop();
         }
@@ -4877,23 +5106,25 @@ var createSeats = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncTh
     }, _callee6);
   }));
 
-  return function (_x5, _x6) {
-    return _ref7.apply(this, arguments);
+  return function (_x11, _x12) {
+    return _ref12.apply(this, arguments);
   };
 }());
 var updateSeats = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/updateSeats", /*#__PURE__*/function () {
-  var _ref9 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(_, _ref8) {
-    var getState, seats, response;
+  var _ref14 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(_, _ref13) {
+    var getState, token, seats, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
-            getState = _ref8.getState;
+            getState = _ref13.getState;
+            token = getState().auth.token;
             seats = getState().admin.seats;
-            _context7.next = 4;
+            _context7.next = 5;
             return fetch("/api/seats/update", {
               method: "PUT",
               headers: {
+                "Authorization": "Bearer ".concat(token),
                 "Content-Type": "application/json"
               },
               body: JSON.stringify({
@@ -4901,11 +5132,11 @@ var updateSeats = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncTh
               })
             });
 
-          case 4:
+          case 5:
             response = _context7.sent;
             return _context7.abrupt("return", response.ok);
 
-          case 6:
+          case 7:
           case "end":
             return _context7.stop();
         }
@@ -4913,46 +5144,61 @@ var updateSeats = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncTh
     }, _callee7);
   }));
 
-  return function (_x7, _x8) {
-    return _ref9.apply(this, arguments);
+  return function (_x13, _x14) {
+    return _ref14.apply(this, arguments);
   };
 }());
-var getMovies = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/getMovies", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8() {
-  var response;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
-    while (1) {
-      switch (_context8.prev = _context8.next) {
-        case 0:
-          _context8.next = 2;
-          return fetch("/api/film");
+var getMovies = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/getMovies", /*#__PURE__*/function () {
+  var _ref16 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(_, _ref15) {
+    var getState, token, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+      while (1) {
+        switch (_context8.prev = _context8.next) {
+          case 0:
+            getState = _ref15.getState;
+            token = getState().auth.token;
+            _context8.next = 4;
+            return fetch("/api/film", {
+              headers: {
+                "Authorization": "Bearer ".concat(token)
+              }
+            });
 
-        case 2:
-          response = _context8.sent;
-          _context8.next = 5;
-          return response.json();
+          case 4:
+            response = _context8.sent;
+            _context8.next = 7;
+            return response.json();
 
-        case 5:
-          return _context8.abrupt("return", _context8.sent);
+          case 7:
+            return _context8.abrupt("return", _context8.sent);
 
-        case 6:
-        case "end":
-          return _context8.stop();
+          case 8:
+          case "end":
+            return _context8.stop();
+        }
       }
-    }
-  }, _callee8);
-})));
+    }, _callee8);
+  }));
+
+  return function (_x15, _x16) {
+    return _ref16.apply(this, arguments);
+  };
+}());
 var createMovie = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/createMovie", /*#__PURE__*/function () {
-  var _ref12 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee9(_ref11) {
-    var title, description, duration, country, response;
+  var _ref19 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee9(_ref17, _ref18) {
+    var title, description, duration, country, getState, token, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee9$(_context9) {
       while (1) {
         switch (_context9.prev = _context9.next) {
           case 0:
-            title = _ref11.title, description = _ref11.description, duration = _ref11.duration, country = _ref11.country;
-            _context9.next = 3;
+            title = _ref17.title, description = _ref17.description, duration = _ref17.duration, country = _ref17.country;
+            getState = _ref18.getState;
+            token = getState().auth.token;
+            _context9.next = 5;
             return fetch("/api/film", {
               method: "POST",
               headers: {
+                "Authorization": "Bearer ".concat(token),
                 "Content-Type": "application/json"
               },
               body: JSON.stringify({
@@ -4963,11 +5209,11 @@ var createMovie = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncTh
               })
             });
 
-          case 3:
+          case 5:
             response = _context9.sent;
             return _context9.abrupt("return", response.ok);
 
-          case 5:
+          case 7:
           case "end":
             return _context9.stop();
         }
@@ -4975,27 +5221,32 @@ var createMovie = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncTh
     }, _callee9);
   }));
 
-  return function (_x9) {
-    return _ref12.apply(this, arguments);
+  return function (_x17, _x18) {
+    return _ref19.apply(this, arguments);
   };
 }());
 var deleteMovie = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/deleteMovie", /*#__PURE__*/function () {
-  var _ref13 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee10(id) {
-    var response;
+  var _ref21 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee10(id, _ref20) {
+    var getState, token, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee10$(_context10) {
       while (1) {
         switch (_context10.prev = _context10.next) {
           case 0:
-            _context10.next = 2;
+            getState = _ref20.getState;
+            token = getState().auth.token;
+            _context10.next = 4;
             return fetch("/api/film/".concat(id), {
-              method: "DELETE"
+              method: "DELETE",
+              headers: {
+                "Authorization": "Bearer ".concat(token)
+              }
             });
 
-          case 2:
+          case 4:
             response = _context10.sent;
             return _context10.abrupt("return", response.ok);
 
-          case 4:
+          case 6:
           case "end":
             return _context10.stop();
         }
@@ -5003,46 +5254,61 @@ var deleteMovie = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncTh
     }, _callee10);
   }));
 
-  return function (_x10) {
-    return _ref13.apply(this, arguments);
+  return function (_x19, _x20) {
+    return _ref21.apply(this, arguments);
   };
 }());
-var getSeances = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/getSeances", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee11() {
-  var response;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee11$(_context11) {
-    while (1) {
-      switch (_context11.prev = _context11.next) {
-        case 0:
-          _context11.next = 2;
-          return fetch("/api/session");
+var getSeances = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/getSeances", /*#__PURE__*/function () {
+  var _ref23 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee11(_, _ref22) {
+    var getState, token, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee11$(_context11) {
+      while (1) {
+        switch (_context11.prev = _context11.next) {
+          case 0:
+            getState = _ref22.getState;
+            token = getState().auth.token;
+            _context11.next = 4;
+            return fetch("/api/session", {
+              headers: {
+                "Authorization": "Bearer ".concat(token)
+              }
+            });
 
-        case 2:
-          response = _context11.sent;
-          _context11.next = 5;
-          return response.json();
+          case 4:
+            response = _context11.sent;
+            _context11.next = 7;
+            return response.json();
 
-        case 5:
-          return _context11.abrupt("return", _context11.sent);
+          case 7:
+            return _context11.abrupt("return", _context11.sent);
 
-        case 6:
-        case "end":
-          return _context11.stop();
+          case 8:
+          case "end":
+            return _context11.stop();
+        }
       }
-    }
-  }, _callee11);
-})));
+    }, _callee11);
+  }));
+
+  return function (_x21, _x22) {
+    return _ref23.apply(this, arguments);
+  };
+}());
 var createSeance = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/createSeance", /*#__PURE__*/function () {
-  var _ref16 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee12(_ref15) {
-    var time, hall_id, film_id, response;
+  var _ref26 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee12(_ref24, _ref25) {
+    var time, hall_id, film_id, getState, token, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee12$(_context12) {
       while (1) {
         switch (_context12.prev = _context12.next) {
           case 0:
-            time = _ref15.time, hall_id = _ref15.hall_id, film_id = _ref15.film_id;
-            _context12.next = 3;
+            time = _ref24.time, hall_id = _ref24.hall_id, film_id = _ref24.film_id;
+            getState = _ref25.getState;
+            token = getState().auth.token;
+            _context12.next = 5;
             return fetch("/api/session", {
               method: "POST",
               headers: {
+                "Authorization": "Bearer ".concat(token),
                 "Content-Type": "application/json"
               },
               body: JSON.stringify({
@@ -5052,11 +5318,11 @@ var createSeance = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncT
               })
             });
 
-          case 3:
+          case 5:
             response = _context12.sent;
             return _context12.abrupt("return", response.ok);
 
-          case 5:
+          case 7:
           case "end":
             return _context12.stop();
         }
@@ -5064,27 +5330,32 @@ var createSeance = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncT
     }, _callee12);
   }));
 
-  return function (_x11) {
-    return _ref16.apply(this, arguments);
+  return function (_x23, _x24) {
+    return _ref26.apply(this, arguments);
   };
 }());
 var deleteSeance = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/deleteSeance", /*#__PURE__*/function () {
-  var _ref17 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee13(id) {
-    var response;
+  var _ref28 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee13(id, _ref27) {
+    var getState, token, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee13$(_context13) {
       while (1) {
         switch (_context13.prev = _context13.next) {
           case 0:
-            _context13.next = 2;
+            getState = _ref27.getState;
+            token = getState().auth.token;
+            _context13.next = 4;
             return fetch("/api/session/".concat(id), {
-              method: "DELETE"
+              method: "DELETE",
+              headers: {
+                "Authorization": "Bearer ".concat(token)
+              }
             });
 
-          case 2:
+          case 4:
             response = _context13.sent;
             return _context13.abrupt("return", response.ok);
 
-          case 4:
+          case 6:
           case "end":
             return _context13.stop();
         }
@@ -5092,8 +5363,8 @@ var deleteSeance = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncT
     }, _callee13);
   }));
 
-  return function (_x12) {
-    return _ref17.apply(this, arguments);
+  return function (_x25, _x26) {
+    return _ref28.apply(this, arguments);
   };
 }());
 var adminSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createSlice)({
@@ -5142,6 +5413,105 @@ var _adminSlice$actions = adminSlice.actions,
     changeSeatStatus = _adminSlice$actions.changeSeatStatus;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (adminSlice.reducer);
+
+/***/ }),
+
+/***/ "./resources/js/reducers/authSlice.js":
+/*!********************************************!*\
+  !*** ./resources/js/reducers/authSlice.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getToken": () => (/* binding */ getToken),
+/* harmony export */   "resetAuthStatus": () => (/* binding */ resetAuthStatus),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var initialState = {
+  token: "",
+  status: "idle"
+};
+var getToken = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("auth/getToken", /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(_ref) {
+    var email, password, response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            email = _ref.email, password = _ref.password;
+            _context.next = 3;
+            return fetch("/api/tokens/create", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                email: email,
+                password: password
+              })
+            });
+
+          case 3:
+            response = _context.sent;
+
+            if (!(response.status !== 200)) {
+              _context.next = 6;
+              break;
+            }
+
+            throw response.statusText;
+
+          case 6:
+            _context.next = 8;
+            return response.json();
+
+          case 8:
+            return _context.abrupt("return", _context.sent);
+
+          case 9:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function (_x) {
+    return _ref2.apply(this, arguments);
+  };
+}());
+var authSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createSlice)({
+  name: "auth",
+  initialState: initialState,
+  reducers: {
+    resetAuthStatus: function resetAuthStatus(state) {
+      state.status = "idle";
+    }
+  },
+  extraReducers: function extraReducers(builder) {
+    builder.addCase(getToken.rejected, function (state) {
+      state.status = "error";
+    }).addCase(getToken.fulfilled, function (state, action) {
+      state.token = action.payload.token;
+      state.status = "success";
+    });
+  }
+});
+var resetAuthStatus = authSlice.actions.resetAuthStatus;
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (authSlice.reducer);
 
 /***/ }),
 
@@ -5415,24 +5785,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "store": () => (/* binding */ store)
 /* harmony export */ });
-/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
 /* harmony import */ var _reducers_scheduleSlice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../reducers/scheduleSlice */ "./resources/js/reducers/scheduleSlice.js");
 /* harmony import */ var _reducers_seanceSlice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/seanceSlice */ "./resources/js/reducers/seanceSlice.js");
 /* harmony import */ var _reducers_popupSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/popupSlice */ "./resources/js/reducers/popupSlice.js");
 /* harmony import */ var _reducers_adminSlice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/adminSlice */ "./resources/js/reducers/adminSlice.js");
+/* harmony import */ var _reducers_authSlice__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../reducers/authSlice */ "./resources/js/reducers/authSlice.js");
+/* harmony import */ var _sessionStorageWorkers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./sessionStorageWorkers */ "./resources/js/store/sessionStorageWorkers.js");
 
 
 
 
 
-var store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_4__.configureStore)({
+
+
+var store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_6__.configureStore)({
   reducer: {
     schedule: _reducers_scheduleSlice__WEBPACK_IMPORTED_MODULE_0__["default"],
     seance: _reducers_seanceSlice__WEBPACK_IMPORTED_MODULE_1__["default"],
+    auth: _reducers_authSlice__WEBPACK_IMPORTED_MODULE_4__["default"],
     admin: _reducers_adminSlice__WEBPACK_IMPORTED_MODULE_3__["default"],
     popup: _reducers_popupSlice__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  // загрузка токена из session storage
+  preloadedState: {
+    auth: (0,_sessionStorageWorkers__WEBPACK_IMPORTED_MODULE_5__.loadFromSessionStorage)("auth")
   }
+}); // запись токена в session storage
+
+store.subscribe(function () {
+  (0,_sessionStorageWorkers__WEBPACK_IMPORTED_MODULE_5__.saveToSessionStorage)("auth", store.getState().auth);
 });
+
+/***/ }),
+
+/***/ "./resources/js/store/sessionStorageWorkers.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/store/sessionStorageWorkers.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "saveToSessionStorage": () => (/* binding */ saveToSessionStorage),
+/* harmony export */   "loadFromSessionStorage": () => (/* binding */ loadFromSessionStorage)
+/* harmony export */ });
+var saveToSessionStorage = function saveToSessionStorage(key, state) {
+  try {
+    sessionStorage.setItem(key, JSON.stringify(state));
+  } catch (e) {
+    console.error(e);
+  }
+};
+var loadFromSessionStorage = function loadFromSessionStorage(key) {
+  try {
+    var stateStr = sessionStorage.getItem(key);
+    return stateStr ? JSON.parse(stateStr) : undefined;
+  } catch (e) {
+    console.error(e);
+    return undefined;
+  }
+};
 
 /***/ }),
 
