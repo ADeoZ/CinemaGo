@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SessionRequest;
 use App\Models\Session;
+use DateTime;
 use Illuminate\Http\Response;
 
 class SessionController extends Controller
@@ -27,6 +28,18 @@ class SessionController extends Controller
     public function store(SessionRequest $request)
     {
         return Session::create($request->validated());
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param string
+     * @return Response
+     */
+    public function show($datetime)
+    {
+        $dateFormatted = DateTime::createFromFormat('Y-m-d', $datetime)->format('Y-m-d');
+        return Session::whereDate('datetime', $dateFormatted)->get();
     }
 
     /**

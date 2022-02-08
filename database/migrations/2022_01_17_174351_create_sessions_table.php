@@ -15,7 +15,7 @@ class CreateSessionsTable extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
-            $table->time('time')->unsigned();
+            $table->datetime('datetime')->unsigned();
             $table->integer('hall_id')->unsigned()->default(1);
             $table->foreign('hall_id')->references('id')->on('halls')->onDelete('cascade');;
             $table->integer('film_id')->unsigned()->default(1);

@@ -1,13 +1,16 @@
 import NavigationDay from "./NavigationDay";
 import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {chooseDate} from "../../../reducers/scheduleSlice";
 
 export default function Navigation() {
     const [start, setStart] = useState(new Date());
-    const [chosen, setChosen] = useState(new Date(start.getTime()));
+    const {chosenDate} = useSelector((state) => state.schedule);
+    const dispatch = useDispatch();
     const today = new Date();
 
     const handleClick = (day) => {
-        setChosen(new Date(day));
+        dispatch(chooseDate(`${day.getFullYear()}-${day.getMonth() + 1}-${day.getDate()}`));
     }
 
     const handleStart = (day, arg) => {
@@ -29,7 +32,7 @@ export default function Navigation() {
             {daysArray.map((day) =>
                 <NavigationDay
                     date={day}
-                    chosen={chosen}
+                    chosen={chosenDate}
                     handleClick={() => handleClick(day)}
                     key={day}
                 />

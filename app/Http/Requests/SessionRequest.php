@@ -24,7 +24,7 @@ class SessionRequest extends FormRequest
     public function rules()
     {
         return [
-            'time' => ['required', 'string'],
+            'datetime' => ['required', 'string'],
             'hall_id' => ['integer'],
             'film_id' => ['integer'],
         ];

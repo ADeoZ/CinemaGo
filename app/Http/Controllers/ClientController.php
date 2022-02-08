@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClientRequest;
 use App\Models\Film;
 use App\Models\Hall;
 use App\Models\Seat;
 use App\Models\Session;
-use App\Models\Ticket;
+use DateTime;
 use Illuminate\Database\Eloquent\Builder;
 
 class ClientController extends Controller
@@ -16,18 +17,24 @@ class ClientController extends Controller
      *
      * @return array
      */
-    public function schedule()
+    public function schedule(string $datetime)
     {
-        // Все открытые залы
-        $halls = Hall::with('sessions')->where('opened', 1)->select('id', 'name')->get();
+        $dateFormatted = DateTime::createFromFormat('Y-m-d', $datetime)->format('Y-m-d');
 
-        // Все фильмы в открытых залах
-        $filmIds = Session::whereHas('hall', function (Builder $query) {
+        // Все открытые залы с сеансами в заданную дату
+        $halls = Hall::where('opened', 1)->whereHas('sessions', function (Builder $query) use ($dateFormatted) {
+            $query->whereDate('datetime', $dateFormatted);
+        })->select('id', 'name')->get();
+
+        // Сеансы в открытых залах на заданную дату
+        $sessions = Session::whereDate('datetime', $dateFormatted)->whereHas('hall', function (Builder $query) {
             $query->where('opened', 1);
-        })->pluck('film_id');
-        $films = Film::all()->whereIn('id', $filmIds)->flatten();
+        })->get();
 
-        return ["halls" => $halls, "films" => $films];
+        // Все фильмы в открытых залах на заданную дату
+        $films = Film::all()->whereIn('id', $sessions->pluck('film_id'))->flatten();
+
+        return ["halls" => $halls, "sessions" => $sessions, "films" => $films];
     }
 
     /**
@@ -35,13 +42,13 @@ class ClientController extends Controller
      *
      * @return array
      */
-    public function seatsAvailable($sessionId)
+    public function seatsAvailable(int $sessionId)
     {
         // Информация о сеансе
         $session = Session::where('sessions.id', $sessionId)
             ->leftJoin('halls', 'sessions.hall_id', '=', 'halls.id')
             ->leftJoin('films', 'sessions.film_id', '=', 'films.id')
-            ->select('sessions.id', 'sessions.time', 'films.title', 'sessions.hall_id', 'halls.name', 'halls.row', 'halls.price_standard', 'halls.price_vip')->first();
+            ->select('sessions.id', 'sessions.datetime', 'films.title', 'sessions.hall_id', 'halls.name', 'halls.row', 'halls.price_standard', 'halls.price_vip')->first();
 
         // Купленные места
         $tickets = Seat::has('tickets')->whereHas('tickets', function (Builder $query) use ($sessionId) {

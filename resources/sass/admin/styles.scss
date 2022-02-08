@@ -837,6 +837,10 @@ input[type='radio'], input[type='submit'], button, .conf-step__header, select {
     }
 }
 
+.conf_step__datepicker {
+    width: 200px;
+}
+
 .conf-step__error {
     font-size: 1.6rem;
     font-weight: 600;

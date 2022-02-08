@@ -32,7 +32,7 @@ export default function MainTicket() {
                         film={session.title}
                         seats={seatsNumbers.join(', ')}
                         hall={session.name}
-                        time={session.time}
+                        time={session.datetime}
                     />
                     {ticket.id &&
                         <TicketQr

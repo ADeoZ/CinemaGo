@@ -1,10 +1,12 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
+const today = new Date();
 const initialState = {
     halls: [],
     seats: [],
     selectedHallScheme: {},
     movies: [],
+    chosenDate: `${today.getFullYear()}-${('0' + (today.getMonth() + 1)).slice(-2)}-${('0' + today.getDate()).slice(-2)}`,
     seances: [],
 };
 
@@ -154,7 +156,8 @@ export const getSeances = createAsyncThunk(
     "admin/getSeances",
     async (_, {getState}) => {
         const {token} = getState().auth;
-        const response = await fetch(`/api/session`, {
+        const {chosenDate} = getState().admin;
+        const response = await fetch(`/api/session/${chosenDate}`, {
             headers: {"Authorization": `Bearer ${token}`},
         });
         return await response.json();
@@ -163,7 +166,7 @@ export const getSeances = createAsyncThunk(
 
 export const createSeance = createAsyncThunk(
     "admin/createSeance",
-    async ({time, hall_id, film_id}, {getState}) => {
+    async ({datetime, hall_id, film_id}, {getState}) => {
         const {token} = getState().auth;
         const response = await fetch(`/api/session`, {
             method: "POST",
@@ -171,7 +174,7 @@ export const createSeance = createAsyncThunk(
                 "Authorization": `Bearer ${token}`,
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({time, hall_id, film_id}),
+            body: JSON.stringify({datetime, hall_id, film_id}),
         });
         return response.ok;
     }
@@ -210,7 +213,10 @@ const adminSlice = createSlice({
             const {id, status} = action.payload;
             const seat = state.seats.find((seat) => seat.id === id);
             seat.status = status;
-        }
+        },
+        chooseDate: (state, action) => {
+            state.chosenDate = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -229,5 +235,5 @@ const adminSlice = createSlice({
     },
 });
 
-export const {createScheme, selectHallScheme, changeHallSize, changeSeatStatus} = adminSlice.actions;
+export const {createScheme, selectHallScheme, changeHallSize, changeSeatStatus, chooseDate} = adminSlice.actions;
 export default adminSlice.reducer;

@@ -27,7 +27,7 @@ export default function MainBooking() {
                         film={session.title}
                         seats={seatsNumbers.join(', ')}
                         hall={session.name}
-                        time={session.time}
+                        time={session.datetime}
                         cost={ticket.cost}
                     />
                     <Button text={"Получить код бронирования"} link={"/ticket"}/>

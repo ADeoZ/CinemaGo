@@ -6,8 +6,9 @@ import {useState} from "react";
 
 export default function AddSeance() {
     const {id} = useSelector((state) => state.popup);
-    const {halls, movies} = useSelector((state) => state.admin);
-    const EMPTY_STATE = {time: "00:00", hall: id, movie: movies[0].id};
+    const {halls, movies, chosenDate} = useSelector((state) => state.admin);
+    const today = new Date();
+    const EMPTY_STATE = {date: chosenDate, time: "00:00", hall: id, movie: movies[0].id};
     const [form, setForm] = useState(EMPTY_STATE);
     const dispatch = useDispatch();
 
@@ -19,8 +20,9 @@ export default function AddSeance() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const datetime = new Date(form.date);
         dispatch(createSeance({
-            time: form.time,
+            datetime: `${datetime.getFullYear()}-${('0' + (datetime.getMonth() + 1)).slice(-2)}-${('0' + datetime.getDate()).slice(-2)} ${form.time}`,
             hall_id: form.hall,
             film_id: form.movie,
         }));
@@ -44,6 +46,22 @@ export default function AddSeance() {
                 >
                     {halls.map((hall) => <option value={hall.id} key={hall.id}>{hall.name}</option>)}
                 </select>
+            </label>
+            <label className="conf-step__label conf-step__label-fullsize"
+                   htmlFor="date"
+            >
+                Дата сеансов
+                <input
+                    className="conf-step__input"
+                    type="date"
+                    name="date"
+                    min={`${today.getFullYear()}-${('0' + (today.getMonth() + 1)).slice(-2)}-${('0' + today.getDate()).slice(-2)}`}
+                    max="2032-12-31"
+                    value={form.date}
+                    onChange={handleChange}
+                    required
+                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+                />
             </label>
             <label
                 className="conf-step__label conf-step__label-fullsize"

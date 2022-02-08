@@ -39,8 +39,9 @@ class DatabaseSeeder extends Seeder
                 Session::factory()->count(5)->for($hall)->state(
                     new Sequence(
                         function ($sequence) {
+                            $sessionsDay = date("Y-m-d");
                             $sessionsTime = ['10:00', '13:00', '16:00', '19:00', '22:00'];
-                            return ['time' => $sessionsTime[$sequence->index], 'film_id' => Film::all()->random()];
+                            return ['datetime' => $sessionsDay . " " . $sessionsTime[$sequence->index], 'film_id' => Film::all()->random()];
                         },
                     ))
                     ->create()->each(
@@ -55,7 +56,6 @@ class DatabaseSeeder extends Seeder
                                 ))
                                 ->hasAttached(
                                     Seat::where([['hall_id', $session['hall_id']], ['status', '<>', 'disabled']])->inRandomOrder()->limit(random_int(1, 4))->get()
-                                // Seat::where('hall_id', $session['hall_id'])->inRandomOrder()->limit(random_int(1, 4))->get()
                                 )
                                 ->create();
                         });

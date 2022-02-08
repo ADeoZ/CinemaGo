@@ -2251,9 +2251,12 @@ function AddSeance() {
     return state.admin;
   }),
       halls = _useSelector2.halls,
-      movies = _useSelector2.movies;
+      movies = _useSelector2.movies,
+      chosenDate = _useSelector2.chosenDate;
 
+  var today = new Date();
   var EMPTY_STATE = {
+    date: chosenDate,
     time: "00:00",
     hall: id,
     movie: movies[0].id
@@ -2277,8 +2280,9 @@ function AddSeance() {
 
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
+    var datetime = new Date(form.date);
     dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.createSeance)({
-      time: form.time,
+      datetime: "".concat(datetime.getFullYear(), "-").concat(('0' + (datetime.getMonth() + 1)).slice(-2), "-").concat(('0' + datetime.getDate()).slice(-2), " ").concat(form.time),
       hall_id: form.hall,
       film_id: form.movie
     }));
@@ -2304,6 +2308,20 @@ function AddSeance() {
             children: hall.name
           }, hall.id);
         })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("label", {
+      className: "conf-step__label conf-step__label-fullsize",
+      htmlFor: "date",
+      children: ["\u0414\u0430\u0442\u0430 \u0441\u0435\u0430\u043D\u0441\u043E\u0432", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+        className: "conf-step__input",
+        type: "date",
+        name: "date",
+        min: "".concat(today.getFullYear(), "-").concat(('0' + (today.getMonth() + 1)).slice(-2), "-").concat(('0' + today.getDate()).slice(-2)),
+        max: "2032-12-31",
+        value: form.date,
+        onChange: handleChange,
+        required: true,
+        pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}"
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("label", {
       className: "conf-step__label conf-step__label-fullsize",
@@ -2958,8 +2976,8 @@ function TimelineMovie(props) {
   });
   var movie = movies[index];
   var width = movie.duration / 60 * 30;
-  var timeFormatted = new Date('01.01.70 ' + time);
-  var shift = (timeFormatted.getHours() + timeFormatted.getMinutes() / 60) * 30;
+  var datetime = new Date(time);
+  var shift = (datetime.getHours() + datetime.getMinutes() / 60) * 30;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "conf-step__seances-movie conf-step__seances-movie-".concat(index + 1),
     style: {
@@ -2980,7 +2998,10 @@ function TimelineMovie(props) {
       children: movie.title
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
       className: "conf-step__seances-movie-start",
-      children: time
+      children: datetime.toLocaleTimeString('ru-RU', {
+        hour: '2-digit',
+        minute: '2-digit'
+      })
     })]
   });
 }
@@ -3008,35 +3029,22 @@ function HallTimeline(props) {
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
     return state.admin;
   }),
-      seances = _useSelector.seances,
-      movies = _useSelector.movies;
+      seances = _useSelector.seances;
 
   var hall = props.hall;
   var hallSeances = seances.filter(function (seance) {
     return +seance.hall_id === hall;
   });
   hallSeances.sort(function (a, b) {
-    return Date.parse('01.01.70 ' + a.time) - Date.parse('01.01.70 ' + b.time);
-  }); // // вычисляем пересечения между сеансами
-  // console.log('зал ' + hall, hallSeances);
-  // const intersections = [];
-  // for (let i = 0; i < hallSeances.length; i++) {
-  //     const duration = movies.find((movie) => movie.id === +hallSeances[i].film_id).duration;
-  //     const timeStart = Date.parse('01.01.70 ' + hallSeances[i].time);
-  //     const timeEnd = timeStart + duration * 60000;
-  //     console.log(new Date(timeStart).getHours() + ":" + new Date(timeStart).getMinutes(), new Date(timeEnd).getHours() + ":" + new Date(timeEnd).getMinutes());
-  //     if (hallSeances[i - 1]) {
-  //
-  //     }
-  // }
-
+    return Date.parse(a.datetime) - Date.parse(b.datetime);
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "conf-step__seances-timeline",
     children: hallSeances.map(function (seance) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_TimelineMovie__WEBPACK_IMPORTED_MODULE_1__["default"], {
         id: seance.film_id,
         seance: seance.id,
-        time: seance.time
+        time: seance.datetime
       }, seance.id);
     })
   });
@@ -3067,7 +3075,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function SeancesHallItem(props) {
-  var id = props.id,
+  var hallId = props.hallId,
       name = props.name;
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -3081,12 +3089,12 @@ function SeancesHallItem(props) {
           return dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_1__.showPopup)({
             title: "Добавление сеанса",
             form: "addSeance",
-            id: id
+            id: hallId
           }));
         }
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_HallTimeline__WEBPACK_IMPORTED_MODULE_0__["default"], {
-      hall: id
+      hall: hallId
     })]
   });
 }
@@ -3119,24 +3127,80 @@ function SeancesHalls() {
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
     return state.admin;
   }),
-      seances = _useSelector.seances,
-      halls = _useSelector.halls;
+      halls = _useSelector.halls,
+      chosenDate = _useSelector.chosenDate;
 
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getSeances)());
-  }, []);
+  }, [chosenDate]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: "conf-step__seances",
     children: [halls.map(function (hall) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SeancesHallItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        id: hall.id,
+        hallId: hall.id,
         name: hall.name
       }, hall.id);
     }), halls.length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
       className: "conf-step__paragraph",
       children: "\u0417\u0430\u043B\u044B \u043E\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u044E\u0442"
     })]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Seances/SeancesPickDate/index.js":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/Admin/Seances/SeancesPickDate/index.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SeancesPickDate)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../reducers/adminSlice */ "./resources/js/reducers/adminSlice.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+function SeancesPickDate() {
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return state.admin;
+  }),
+      chosenDate = _useSelector.chosenDate;
+
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  var today = new Date();
+
+  var handleChange = function handleChange(_ref) {
+    var target = _ref.target;
+    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.chooseDate)(target.value));
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    className: "conf_step__datepicker",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+      className: "conf-step__label conf-step__label-fullsize",
+      htmlFor: "datepicker",
+      children: ["\u0414\u0430\u0442\u0430 \u0441\u0435\u0430\u043D\u0441\u043E\u0432:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+        className: "conf-step__input",
+        type: "date",
+        name: "datepicker",
+        min: "".concat(today.getFullYear(), "-").concat(('0' + (today.getMonth() + 1)).slice(-2), "-").concat(('0' + today.getDate()).slice(-2)),
+        max: "2032-12-31",
+        value: chosenDate,
+        onChange: handleChange,
+        required: true,
+        pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+      })]
+    })
   });
 }
 
@@ -3153,9 +3217,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Seances)
 /* harmony export */ });
-/* harmony import */ var _Buttons_CancelSave__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Buttons/CancelSave */ "./resources/js/components/Admin/Buttons/CancelSave/index.js");
-/* harmony import */ var _Movies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Movies */ "./resources/js/components/Admin/Seances/Movies/index.js");
-/* harmony import */ var _SeancesHalls__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SeancesHalls */ "./resources/js/components/Admin/Seances/SeancesHalls/index.js");
+/* harmony import */ var _Movies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Movies */ "./resources/js/components/Admin/Seances/Movies/index.js");
+/* harmony import */ var _SeancesHalls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SeancesHalls */ "./resources/js/components/Admin/Seances/SeancesHalls/index.js");
+/* harmony import */ var _SeancesPickDate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SeancesPickDate */ "./resources/js/components/Admin/Seances/SeancesPickDate/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -3165,10 +3229,10 @@ __webpack_require__.r(__webpack_exports__);
 function Seances() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "conf-step__wrapper",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Movies__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Movies__WEBPACK_IMPORTED_MODULE_0__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
       className: "conf-step__paragraph",
       children: "\u041D\u0430\u0436\u043C\u0438\u0442\u0435 \u043D\u0430 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0437\u0430\u043B\u0430 \u0434\u043B\u044F \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0441\u0435\u0430\u043D\u0441\u0430, \u043D\u0430 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0444\u0438\u043B\u044C\u043C\u0430 \u0432 \u0440\u0430\u0441\u043F\u0438\u0441\u0430\u043D\u0438\u0438 \u0434\u043B\u044F \u0443\u0434\u0430\u043B\u0435\u043D\u0438\u044F"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SeancesHalls__WEBPACK_IMPORTED_MODULE_2__["default"], {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SeancesPickDate__WEBPACK_IMPORTED_MODULE_2__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SeancesHalls__WEBPACK_IMPORTED_MODULE_1__["default"], {})]
   });
 }
 
@@ -3821,7 +3885,7 @@ function MainBooking() {
           film: session.title,
           seats: seatsNumbers.join(', '),
           hall: session.name,
-          time: session.time,
+          time: session.datetime,
           cost: ticket.cost
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Button__WEBPACK_IMPORTED_MODULE_4__["default"], {
           text: "Получить код бронирования",
@@ -3858,12 +3922,16 @@ __webpack_require__.r(__webpack_exports__);
 function MovieSeance(props) {
   var id = props.id,
       time = props.time;
+  var datetime = new Date(time);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
     className: "movie-seances__time-block",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
       className: "movie-seances__time",
       to: "seance/".concat(id),
-      children: time
+      children: datetime.toLocaleTimeString('ru-RU', {
+        hour: '2-digit',
+        minute: '2-digit'
+      })
     })
   });
 }
@@ -3912,7 +3980,7 @@ function MovieHall(props) {
       children: hallSeances.map(function (seance) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_MovieSeance__WEBPACK_IMPORTED_MODULE_1__["default"], {
           id: seance.id,
-          time: seance.time
+          time: seance.datetime
         }, seance.id);
       })
     })]
@@ -4074,12 +4142,13 @@ function Main() {
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.schedule;
   }),
+      chosenDate = _useSelector.chosenDate,
       films = _useSelector.films;
 
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch((0,_reducers_scheduleSlice__WEBPACK_IMPORTED_MODULE_2__.getSchedule)());
-  }, []);
+    dispatch((0,_reducers_scheduleSlice__WEBPACK_IMPORTED_MODULE_2__.getSchedule)(chosenDate));
+  }, [chosenDate]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Client__WEBPACK_IMPORTED_MODULE_4__["default"], {
     nav: true,
     children: films.map(function (film) {
@@ -4285,6 +4354,7 @@ function SeanceInfo() {
   }),
       session = _useSelector.session;
 
+  var datetime = new Date(session.datetime);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "buying__info",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -4294,7 +4364,10 @@ function SeanceInfo() {
         children: session.title
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
         className: "buying__info-start",
-        children: ["\u041D\u0430\u0447\u0430\u043B\u043E \u0441\u0435\u0430\u043D\u0441\u0430: ", session.time]
+        children: ["\u041D\u0430\u0447\u0430\u043B\u043E \u0441\u0435\u0430\u043D\u0441\u0430: ", session.datetime && datetime.toLocaleDateString('ru-RU', {
+          hour: '2-digit',
+          minute: '2-digit'
+        })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
         className: "buying__info-hall",
         children: session.name
@@ -4539,7 +4612,7 @@ function MainTicket() {
           film: session.title,
           seats: seatsNumbers.join(', '),
           hall: session.name,
-          time: session.time
+          time: session.datetime
         }), ticket.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_TicketQr__WEBPACK_IMPORTED_MODULE_6__["default"], {
           code: "\u0411\u0438\u043B\u0435\u0442: ".concat(ticket.id, ". \u0417\u0430\u043B: ").concat(session.name, ". \u0412\u0440\u0435\u043C\u044F: ").concat(session.time, ". \u041C\u0435\u0441\u0442\u0430: ").concat(seatsNumbers.join(', '))
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
@@ -4613,7 +4686,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _NavigationDay__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NavigationDay */ "./resources/js/components/Client/Navigation/NavigationDay/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _reducers_scheduleSlice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../reducers/scheduleSlice */ "./resources/js/reducers/scheduleSlice.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4630,21 +4705,24 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 function Navigation() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(new Date()),
       _useState2 = _slicedToArray(_useState, 2),
       start = _useState2[0],
       setStart = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(new Date(start.getTime())),
-      _useState4 = _slicedToArray(_useState3, 2),
-      chosen = _useState4[0],
-      setChosen = _useState4[1];
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.schedule;
+  }),
+      chosenDate = _useSelector.chosenDate;
 
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
   var today = new Date();
 
   var _handleClick = function handleClick(day) {
-    setChosen(new Date(day));
+    dispatch((0,_reducers_scheduleSlice__WEBPACK_IMPORTED_MODULE_3__.chooseDate)("".concat(day.getFullYear(), "-").concat(day.getMonth() + 1, "-").concat(day.getDate())));
   };
 
   var handleStart = function handleStart(day, arg) {
@@ -4659,23 +4737,23 @@ function Navigation() {
     daysArray.push(nextDay);
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("nav", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("nav", {
     className: "page-nav",
-    children: [start.setHours(0, 0, 0, 0) === today.setHours(0, 0, 0, 0) || /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+    children: [start.setHours(0, 0, 0, 0) === today.setHours(0, 0, 0, 0) || /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
       className: "page-nav__day page-nav__day_prev",
       onClick: function onClick() {
         return handleStart(start, -1);
       },
       href: "#"
     }), daysArray.map(function (day) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_NavigationDay__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_NavigationDay__WEBPACK_IMPORTED_MODULE_0__["default"], {
         date: day,
-        chosen: chosen,
+        chosen: chosenDate,
         handleClick: function handleClick() {
           return _handleClick(day);
         }
       }, day);
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
       className: "page-nav__day page-nav__day_next",
       onClick: function onClick() {
         return handleStart(start, 1);
@@ -4748,6 +4826,7 @@ function TicketInfo(props) {
       hall = props.hall,
       time = props.time,
       cost = props.cost;
+  var datetime = new Date(time);
 
   var _useCountableEndings = (0,_customHooks_useCountableEndings__WEBPACK_IMPORTED_MODULE_0__.useCountableEndings)(cost, ['рублей', 'рубля', 'рубль']),
       _useCountableEndings2 = _slicedToArray(_useCountableEndings, 2),
@@ -4777,7 +4856,10 @@ function TicketInfo(props) {
       className: "ticket__info",
       children: ["\u041D\u0430\u0447\u0430\u043B\u043E \u0441\u0435\u0430\u043D\u0441\u0430: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
         className: "ticket__details ticket__start",
-        children: time
+        children: time && datetime.toLocaleDateString('ru-RU', {
+          hour: '2-digit',
+          minute: '2-digit'
+        })
       })]
     }), cost && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
       className: "ticket__info",
@@ -4876,6 +4958,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "selectHallScheme": () => (/* binding */ selectHallScheme),
 /* harmony export */   "changeHallSize": () => (/* binding */ changeHallSize),
 /* harmony export */   "changeSeatStatus": () => (/* binding */ changeSeatStatus),
+/* harmony export */   "chooseDate": () => (/* binding */ chooseDate),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -4888,11 +4971,13 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
+var today = new Date();
 var initialState = {
   halls: [],
   seats: [],
   selectedHallScheme: {},
   movies: [],
+  chosenDate: "".concat(today.getFullYear(), "-").concat(('0' + (today.getMonth() + 1)).slice(-2), "-").concat(('0' + today.getDate()).slice(-2)),
   seances: []
 };
 var getHalls = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/getHalls", /*#__PURE__*/function () {
@@ -5260,29 +5345,30 @@ var deleteMovie = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncTh
 }());
 var getSeances = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/getSeances", /*#__PURE__*/function () {
   var _ref23 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee11(_, _ref22) {
-    var getState, token, response;
+    var getState, token, chosenDate, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee11$(_context11) {
       while (1) {
         switch (_context11.prev = _context11.next) {
           case 0:
             getState = _ref22.getState;
             token = getState().auth.token;
-            _context11.next = 4;
-            return fetch("/api/session", {
+            chosenDate = getState().admin.chosenDate;
+            _context11.next = 5;
+            return fetch("/api/session/".concat(chosenDate), {
               headers: {
                 "Authorization": "Bearer ".concat(token)
               }
             });
 
-          case 4:
+          case 5:
             response = _context11.sent;
-            _context11.next = 7;
+            _context11.next = 8;
             return response.json();
 
-          case 7:
+          case 8:
             return _context11.abrupt("return", _context11.sent);
 
-          case 8:
+          case 9:
           case "end":
             return _context11.stop();
         }
@@ -5296,12 +5382,12 @@ var getSeances = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThu
 }());
 var createSeance = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/createSeance", /*#__PURE__*/function () {
   var _ref26 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee12(_ref24, _ref25) {
-    var time, hall_id, film_id, getState, token, response;
+    var datetime, hall_id, film_id, getState, token, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee12$(_context12) {
       while (1) {
         switch (_context12.prev = _context12.next) {
           case 0:
-            time = _ref24.time, hall_id = _ref24.hall_id, film_id = _ref24.film_id;
+            datetime = _ref24.datetime, hall_id = _ref24.hall_id, film_id = _ref24.film_id;
             getState = _ref25.getState;
             token = getState().auth.token;
             _context12.next = 5;
@@ -5312,7 +5398,7 @@ var createSeance = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncT
                 "Content-Type": "application/json"
               },
               body: JSON.stringify({
-                time: time,
+                datetime: datetime,
                 hall_id: hall_id,
                 film_id: film_id
               })
@@ -5392,6 +5478,9 @@ var adminSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createSlice)({
         return seat.id === id;
       });
       seat.status = status;
+    },
+    chooseDate: function chooseDate(state, action) {
+      state.chosenDate = action.payload;
     }
   },
   extraReducers: function extraReducers(builder) {
@@ -5410,7 +5499,8 @@ var _adminSlice$actions = adminSlice.actions,
     createScheme = _adminSlice$actions.createScheme,
     selectHallScheme = _adminSlice$actions.selectHallScheme,
     changeHallSize = _adminSlice$actions.changeHallSize,
-    changeSeatStatus = _adminSlice$actions.changeSeatStatus;
+    changeSeatStatus = _adminSlice$actions.changeSeatStatus,
+    chooseDate = _adminSlice$actions.chooseDate;
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (adminSlice.reducer);
 
@@ -5574,11 +5664,18 @@ var _popupSlice$actions = popupSlice.actions,
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getSchedule": () => (/* binding */ getSchedule),
+/* harmony export */   "chooseDate": () => (/* binding */ chooseDate),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -5586,49 +5683,69 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
+var today = new Date();
 var initialState = {
-  films: [],
-  halls: []
+  chosenDate: "".concat(today.getFullYear(), "-").concat(('0' + (today.getMonth() + 1)).slice(-2), "-").concat(('0' + today.getDate()).slice(-2)),
+  halls: [],
+  films: []
 };
-var getSchedule = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("schedule/getSchedule", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-  var response, data;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          _context.next = 2;
-          return fetch("/api/client/schedule");
+var getSchedule = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("schedule/getSchedule", /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(date) {
+    var response;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return fetch("/api/client/schedule/".concat(date));
 
-        case 2:
-          response = _context.sent;
-          _context.next = 5;
-          return response.json();
+          case 2:
+            response = _context.sent;
+            _context.next = 5;
+            return response.json();
 
-        case 5:
-          data = _context.sent;
-          return _context.abrupt("return", data);
+          case 5:
+            return _context.abrupt("return", _context.sent);
 
-        case 7:
-        case "end":
-          return _context.stop();
+          case 6:
+          case "end":
+            return _context.stop();
+        }
       }
-    }
-  }, _callee);
-})));
+    }, _callee);
+  }));
+
+  return function (_x) {
+    return _ref.apply(this, arguments);
+  };
+}());
 var scheduleSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createSlice)({
   name: "schedule",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    chooseDate: function chooseDate(state, action) {
+      state.chosenDate = action.payload;
+    }
+  },
   extraReducers: function extraReducers(builder) {
     builder.addCase(getSchedule.fulfilled, function (state, action) {
       var _action$payload = action.payload,
-          films = _action$payload.films,
-          halls = _action$payload.halls;
+          halls = _action$payload.halls,
+          sessions = _action$payload.sessions,
+          films = _action$payload.films;
+      state.halls = halls.map(function (hall) {
+        return _objectSpread(_objectSpread({}, hall), {}, {
+          "sessions": sessions.filter(function (session) {
+            return +session.hall_id === hall.id;
+          })
+        });
+      });
       state.films = films;
-      state.halls = halls;
     });
   }
 });
+var chooseDate = scheduleSlice.actions.chooseDate;
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (scheduleSlice.reducer);
 
 /***/ }),

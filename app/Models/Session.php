@@ -11,7 +11,7 @@ class Session extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['time', 'hall_id', 'film_id'];
+    protected $fillable = ['datetime', 'hall_id', 'film_id'];
     protected $hidden = ['created_at', 'updated_at'];
 
     public function hall(): BelongsTo

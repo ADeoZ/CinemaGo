@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 });
 
 // API клиентской части
-Route::get('/client/schedule', [\App\Http\Controllers\ClientController::class, 'schedule']);
+Route::get('/client/schedule/{date}', [\App\Http\Controllers\ClientController::class, 'schedule']);
 Route::get('/client/seats/{session}', [\App\Http\Controllers\ClientController::class, 'seatsAvailable']);
 Route::apiResource('/ticket', \App\Http\Controllers\TicketController::class);
 

@@ -14,7 +14,7 @@ class SessionFactory extends Factory
     public function definition()
     {
         return [
-            'time' => $this->faker->time('H:i', '10:00')
+            'datetime' => date("Y-m-d") . ' ' . $this->faker->time('H:i')
         ];
     }
 }

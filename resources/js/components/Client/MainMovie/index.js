@@ -5,12 +5,12 @@ import Movie from "./Movie";
 import Client from "../Client";
 
 export default function Main() {
-    const {films} = useSelector((state) => state.schedule);
+    const {chosenDate, films} = useSelector((state) => state.schedule);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getSchedule());
-    }, []);
+        dispatch(getSchedule(chosenDate));
+    }, [chosenDate]);
 
     return (
         <Client nav>
