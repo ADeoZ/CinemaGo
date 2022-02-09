@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FilmRequest;
 use App\Models\Film;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class FilmController extends Controller
 {
@@ -21,12 +23,14 @@ class FilmController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param FilmRequest $request
-     * @return Response
+
      */
     public function store(FilmRequest $request)
     {
-        return Film::create($request->validated());
+        $film = new Film;
+        $film->fill($request->validated());
+        $film->poster = $request->poster->store('posters');
+        return $film->save();
     }
 
     /**

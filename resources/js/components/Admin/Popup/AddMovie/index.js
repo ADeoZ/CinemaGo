@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useRef} from "react";
 import {useDispatch} from "react-redux";
 import {createMovie, getMovies} from "../../../../reducers/adminSlice";
 import {closePopup} from "../../../../reducers/popupSlice";
@@ -8,6 +8,7 @@ export default function AddMovie() {
     const EMPTY_STATE = {title: "", description: "", duration: "", country: ""};
     const [form, setForm] = useState(EMPTY_STATE);
     const dispatch = useDispatch();
+    const fileInput = useRef(null);
 
     const handleChange = ({target}) => {
         const name = target.name;
@@ -21,14 +22,31 @@ export default function AddMovie() {
             title: form.title,
             description: form.description,
             duration: form.duration,
-            country: form.country
-        }));
-        dispatch(closePopup());
-        dispatch(getMovies());
+            country: form.country,
+            poster: fileInput.current.files[0],
+        })).then(() => {
+            dispatch(closePopup());
+            dispatch(getMovies());
+        });
+
     };
 
     return (
         <form acceptCharset="utf-8" onSubmit={handleSubmit}>
+            <label
+                className="conf-step__label conf-step__label-fullsize"
+                htmlFor="poster"
+            >
+                Постер фильма (до 2Мб)
+                <input
+                    className="conf-step__input"
+                    type="file"
+                    accept="image/*"
+                    name="poster"
+                    ref={fileInput}
+                    required
+                />
+            </label>
             <label
                 className="conf-step__label conf-step__label-fullsize"
                 htmlFor="name"
@@ -65,7 +83,7 @@ export default function AddMovie() {
                 Длительность
                 <input
                     className="conf-step__input"
-                    type="text"
+                    type="number"
                     placeholder="120"
                     name="duration"
                     value={form.duration}

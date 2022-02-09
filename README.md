@@ -59,3 +59,7 @@ npm install
 npm run dev
 php artisan serve
 ```
+7. Доступ в панель администрирования  
+URL: *{APP_URL}/admin/login*  
+E-mail: *admin@gmail.com*  
+Пароль: *admin*

@@ -12,10 +12,11 @@ export default function DeleteMovie() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(deleteMovie(id));
-        dispatch(closePopup());
-        dispatch(getSeances());
-        dispatch(getMovies());
+        dispatch(deleteMovie(id)).then(() => {
+            dispatch(closePopup());
+            dispatch(getSeances());
+            dispatch(getMovies());
+        });
     };
 
     return (

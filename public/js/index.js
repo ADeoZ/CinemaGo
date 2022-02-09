@@ -2035,9 +2035,10 @@ function AddHall() {
 
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
-    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_3__.createHall)(form.name));
-    dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_4__.closePopup)());
-    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_3__.getHalls)());
+    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_3__.createHall)(form.name)).then(function () {
+      dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_4__.closePopup)());
+      dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_3__.getHalls)());
+    });
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
@@ -2119,6 +2120,7 @@ function AddMovie() {
       setForm = _useState2[1];
 
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+  var fileInput = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
 
   var handleChange = function handleChange(_ref) {
     var target = _ref.target;
@@ -2135,16 +2137,29 @@ function AddMovie() {
       title: form.title,
       description: form.description,
       duration: form.duration,
-      country: form.country
-    }));
-    dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_3__.closePopup)());
-    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getMovies)());
+      country: form.country,
+      poster: fileInput.current.files[0]
+    })).then(function () {
+      dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_3__.closePopup)());
+      dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getMovies)());
+    });
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
     acceptCharset: "utf-8",
     onSubmit: handleSubmit,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("label", {
+      className: "conf-step__label conf-step__label-fullsize",
+      htmlFor: "poster",
+      children: ["\u041F\u043E\u0441\u0442\u0435\u0440 \u0444\u0438\u043B\u044C\u043C\u0430 (\u0434\u043E 2\u041C\u0431)", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+        className: "conf-step__input",
+        type: "file",
+        accept: "image/*",
+        name: "poster",
+        ref: fileInput,
+        required: true
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("label", {
       className: "conf-step__label conf-step__label-fullsize",
       htmlFor: "name",
       children: ["\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0444\u0438\u043B\u044C\u043C\u0430", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
@@ -2172,7 +2187,7 @@ function AddMovie() {
       htmlFor: "duration",
       children: ["\u0414\u043B\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
         className: "conf-step__input",
-        type: "text",
+        type: "number",
         placeholder: "120",
         name: "duration",
         value: form.duration,
@@ -2285,9 +2300,10 @@ function AddSeance() {
       datetime: "".concat(datetime.getFullYear(), "-").concat(('0' + (datetime.getMonth() + 1)).slice(-2), "-").concat(('0' + datetime.getDate()).slice(-2), " ").concat(form.time),
       hall_id: form.hall,
       film_id: form.movie
-    }));
-    dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_3__.closePopup)());
-    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getSeances)());
+    })).then(function () {
+      dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_3__.closePopup)());
+      dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getSeances)());
+    });
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
@@ -2440,9 +2456,10 @@ function DeleteHall() {
 
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
-    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.deleteHall)(id));
-    dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_3__.closePopup)());
-    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getHalls)());
+    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.deleteHall)(id)).then(function () {
+      dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_3__.closePopup)());
+      dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getHalls)());
+    });
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
@@ -2500,10 +2517,11 @@ function DeleteMovie() {
 
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
-    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.deleteMovie)(id));
-    dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_3__.closePopup)());
-    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getSeances)());
-    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getMovies)());
+    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.deleteMovie)(id)).then(function () {
+      dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_3__.closePopup)());
+      dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getSeances)());
+      dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getMovies)());
+    });
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
@@ -2557,17 +2575,18 @@ function DeleteSeance() {
 
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useDispatch)();
   var seance = seances.find(function (seance) {
-    return seance.id == id;
+    return +seance.id === id;
   });
   var title = movies.find(function (movie) {
-    return movie.id == seance.film_id;
+    return movie.id === +seance.film_id;
   }).title;
 
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
-    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.deleteSeance)(id));
-    dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_3__.closePopup)());
-    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getSeances)());
+    dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.deleteSeance)(id)).then(function () {
+      dispatch((0,_reducers_popupSlice__WEBPACK_IMPORTED_MODULE_3__.closePopup)());
+      dispatch((0,_reducers_adminSlice__WEBPACK_IMPORTED_MODULE_2__.getSeances)());
+    });
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
@@ -2932,7 +2951,7 @@ function Movies() {
       children: movies.map(function (movie) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_MovieItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
           id: movie.id,
-          img: "poster".concat(Math.floor(Math.random() * 5) + 1, ".jpg"),
+          img: movie.poster,
           title: movie.title,
           duration: movie.duration
         }, movie.id);
@@ -4042,7 +4061,7 @@ function MovieInfo(props) {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
         className: "movie__poster-image",
         alt: "".concat(film.title, " \u043F\u043E\u0441\u0442\u0435\u0440"),
-        src: "images/poster".concat(Math.floor(Math.random() * 5) + 1, ".jpg")
+        src: "images/".concat(film.poster)
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "movie__description",
@@ -5271,34 +5290,34 @@ var getMovies = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThun
 }());
 var createMovie = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createAsyncThunk)("admin/createMovie", /*#__PURE__*/function () {
   var _ref19 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee9(_ref17, _ref18) {
-    var title, description, duration, country, getState, token, response;
+    var title, description, duration, country, poster, getState, formData, token, response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee9$(_context9) {
       while (1) {
         switch (_context9.prev = _context9.next) {
           case 0:
-            title = _ref17.title, description = _ref17.description, duration = _ref17.duration, country = _ref17.country;
+            title = _ref17.title, description = _ref17.description, duration = _ref17.duration, country = _ref17.country, poster = _ref17.poster;
             getState = _ref18.getState;
+            formData = new FormData();
+            formData.append('title', title);
+            formData.append('description', description);
+            formData.append('duration', duration);
+            formData.append('country', country);
+            formData.append('poster', poster);
             token = getState().auth.token;
-            _context9.next = 5;
+            _context9.next = 11;
             return fetch("/api/film", {
               method: "POST",
               headers: {
-                "Authorization": "Bearer ".concat(token),
-                "Content-Type": "application/json"
+                "Authorization": "Bearer ".concat(token)
               },
-              body: JSON.stringify({
-                title: title,
-                description: description,
-                duration: duration,
-                country: country
-              })
+              body: formData
             });
 
-          case 5:
+          case 11:
             response = _context9.sent;
             return _context9.abrupt("return", response.ok);
 
-          case 7:
+          case 13:
           case "end":
             return _context9.stop();
         }

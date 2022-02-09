@@ -11,7 +11,7 @@ export default function MovieInfo(props) {
         <div className="movie__info">
             <div className="movie__poster">
                 <img className="movie__poster-image" alt={`${film.title} постер`}
-                     src={`images/poster${Math.floor(Math.random() * 5) + 1}.jpg`}/>
+                     src={`images/${film.poster}`}/>
             </div>
             <div className="movie__description">
                 <h2 className="movie__title">{film.title}</h2>

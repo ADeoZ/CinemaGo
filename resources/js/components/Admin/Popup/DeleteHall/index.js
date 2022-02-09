@@ -12,9 +12,10 @@ export default function DeleteHall() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(deleteHall(id));
-        dispatch(closePopup());
-        dispatch(getHalls());
+        dispatch(deleteHall(id)).then(() => {
+            dispatch(closePopup());
+            dispatch(getHalls());
+        });
     };
 
     return (

@@ -10,7 +10,7 @@ class Film extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'duration', 'country'];
+    protected $fillable = ['title', 'description', 'duration', 'country', 'poster'];
     protected $hidden = ['created_at', 'updated_at'];
 
     public function sessions(): hasMany

@@ -124,16 +124,24 @@ export const getMovies = createAsyncThunk(
 
 export const createMovie = createAsyncThunk(
     "admin/createMovie",
-    async ({title, description, duration, country}, {getState}) => {
+    async ({title, description, duration, country, poster}, {getState}) => {
+
+        let formData = new FormData()
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('duration', duration);
+        formData.append('country', country);
+        formData.append('poster', poster);
+
         const {token} = getState().auth;
         const response = await fetch(`/api/film`, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}`,
-                "Content-Type": "application/json",
             },
-            body: JSON.stringify({title, description, duration, country}),
+            body: formData,
         });
+
         return response.ok;
     }
 );

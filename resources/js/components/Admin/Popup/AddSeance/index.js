@@ -25,9 +25,10 @@ export default function AddSeance() {
             datetime: `${datetime.getFullYear()}-${('0' + (datetime.getMonth() + 1)).slice(-2)}-${('0' + datetime.getDate()).slice(-2)} ${form.time}`,
             hall_id: form.hall,
             film_id: form.movie,
-        }));
-        dispatch(closePopup());
-        dispatch(getSeances());
+        })).then(() => {
+            dispatch(closePopup());
+            dispatch(getSeances());
+        });
     };
 
     return (

@@ -17,9 +17,10 @@ export default function AddHall() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(createHall(form.name));
-        dispatch(closePopup());
-        dispatch(getHalls());
+        dispatch(createHall(form.name)).then(() => {
+            dispatch(closePopup());
+            dispatch(getHalls());
+        });
     };
 
     return (
