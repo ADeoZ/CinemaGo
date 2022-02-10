@@ -361,6 +361,15 @@ input[type='radio'], input[type='submit'], button, .conf-step__header, select {
     }
 }
 
+.conf-step__edit-hall {
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        text-decoration-line: underline;
+    }
+}
+
 .conf-step__legend {
     color: $grey;
     font-size: 1.4rem;
@@ -543,17 +552,6 @@ input[type='radio'], input[type='submit'], button, .conf-step__header, select {
     }
 }
 
-.conf-step__close {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    width: 18px;
-    height: 18px;
-    background-image: url('../../js/components/Admin/images/close.png');
-    background-size: 18px 18px;
-    display: none;
-}
-
 .conf-step__movies {
     display: flex;
     flex-wrap: wrap;
@@ -569,14 +567,8 @@ input[type='radio'], input[type='submit'], button, .conf-step__header, select {
         box-sizing: border-box;
         cursor: pointer;
 
-        & .conf-step__close {
-            width: 18px;
-            height: 18px;
-            background-size: 18px 18px;
-        }
-
-        &:hover .conf-step__close {
-            display: block;
+        &.conf-step__movie:hover {
+            outline: 3px solid $green;
         }
 
         &:nth-of-type(3n + 2) {
@@ -657,14 +649,8 @@ input[type='radio'], input[type='submit'], button, .conf-step__header, select {
         font-size: 1.2rem;
     }
 
-    & .conf-step__close {
-        width: 12px;
-        height: 12px;
-        background-size: 12px 12px;
-    }
-
-    &:hover .conf-step__close {
-        display: block;
+    &:hover {
+        outline: 3px solid $green;
     }
 
     &::before {
@@ -853,6 +839,11 @@ input[type='radio'], input[type='submit'], button, .conf-step__header, select {
             background-color: #e9ecef;
         }
     }
+}
+
+.conf-step__poster img {
+    max-width: 120px;
+    max-height: 150px;
 }
 
 .conf_step__datepicker {

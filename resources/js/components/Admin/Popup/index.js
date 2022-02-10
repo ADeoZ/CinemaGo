@@ -5,8 +5,10 @@ import classNames from "classnames";
 import {closePopup} from "../../../reducers/popupSlice";
 import DeleteHall from "./DeleteHall";
 import AddMovie from "./AddMovie";
+import EditMovie from "./EditMovie";
 import DeleteMovie from "./DeleteMovie";
 import AddSeance from "./AddSeance";
+import EditSeance from "./EditSeance";
 import DeleteSeance from "./DeleteSeance";
 
 export default function Popup() {
@@ -30,10 +32,13 @@ export default function Popup() {
                     </div>
                     <div className="popup__wrapper">
                         {form === "addHall" && <AddHall/>}
+                        {form === "editHall" && <AddHall edit/>}
                         {form === "deleteHall" && <DeleteHall/>}
                         {form === "addMovie" && <AddMovie/>}
+                        {form === "editMovie" && <EditMovie/>}
                         {form === "deleteMovie" && <DeleteMovie/>}
                         {form === "addSeance" && <AddSeance/>}
+                        {form === "editSeance" && <EditSeance/>}
                         {form === "deleteSeance" && <DeleteSeance/>}
                     </div>
                 </div>

@@ -146,6 +146,32 @@ export const createMovie = createAsyncThunk(
     }
 );
 
+export const updateMovie = createAsyncThunk(
+    "admin/updateMovie",
+    async ({id, title, description, duration, country, poster}, {getState}) => {
+        let formData = new FormData()
+        formData.append('_method', 'put');
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('duration', duration);
+        formData.append('country', country);
+        if (poster) {
+            formData.append('poster', poster);
+        }
+
+        const {token} = getState().auth;
+        const response = await fetch(`/api/film/${id}`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+            },
+            body: formData,
+        });
+
+        return response.ok;
+    }
+);
+
 export const deleteMovie = createAsyncThunk(
     "admin/deleteMovie",
     async (id, {getState}) => {
@@ -178,6 +204,22 @@ export const createSeance = createAsyncThunk(
         const {token} = getState().auth;
         const response = await fetch(`/api/session`, {
             method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({datetime, hall_id, film_id}),
+        });
+        return response.ok;
+    }
+);
+
+export const updateSeance = createAsyncThunk(
+    "admin/updateSeance",
+    async ({id, datetime, hall_id, film_id}, {getState}) => {
+        const {token} = getState().auth;
+        const response = await fetch(`/api/session/${id}`, {
+            method: "PUT",
             headers: {
                 "Authorization": `Bearer ${token}`,
                 "Content-Type": "application/json",

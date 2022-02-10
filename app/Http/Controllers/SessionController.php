@@ -43,6 +43,19 @@ class SessionController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param SessionRequest $request
+     * @param Session $film
+     * @return bool
+     */
+    public function update(SessionRequest $request, Session $session)
+    {
+        $session->fill($request->validated());
+        return $session->save();
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param Session $session

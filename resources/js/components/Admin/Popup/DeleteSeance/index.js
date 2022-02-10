@@ -22,7 +22,7 @@ export default function DeleteSeance() {
     return (
         <form onSubmit={handleSubmit}>
             <p className="conf-step__paragraph">Вы действительно хотите снять с сеанса
-                фильм <span>{title}</span> в {seance.time}?</p>
+                фильм <span>{title}</span> назначенный на {seance.datetime}?</p>
             <CloseOk text={"Удалить"}/>
         </form>
     );

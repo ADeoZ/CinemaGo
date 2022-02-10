@@ -318,6 +318,14 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
   background-position: -12px 0;
 }
 
+.conf-step__edit-hall {
+  cursor: pointer;
+}
+.conf-step__edit-hall:hover, .conf-step__edit-hall:focus {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+}
+
 .conf-step__legend {
   color: #848484;
   font-size: 1.4rem;
@@ -478,17 +486,6 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
   margin-left: 10px;
 }
 
-.conf-step__close {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  width: 18px;
-  height: 18px;
-  background-image: url(/images/close.png?e6bf2a5c2fe1361d1a56a65c76d25003);
-  background-size: 18px 18px;
-  display: none;
-}
-
 .conf-step__movies {
   display: flex;
   flex-wrap: wrap;
@@ -504,13 +501,8 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
   box-sizing: border-box;
   cursor: pointer;
 }
-.conf-step__movies .conf-step__movie .conf-step__close {
-  width: 18px;
-  height: 18px;
-  background-size: 18px 18px;
-}
-.conf-step__movies .conf-step__movie:hover .conf-step__close {
-  display: block;
+.conf-step__movies .conf-step__movie.conf-step__movie:hover {
+  outline: 3px solid #16A6AF;
 }
 .conf-step__movies .conf-step__movie:nth-of-type(3n + 2) {
   margin: 0 15px;
@@ -602,13 +594,8 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
   color: #848484;
   font-size: 1.2rem;
 }
-.conf-step__seances-movie .conf-step__close {
-  width: 12px;
-  height: 12px;
-  background-size: 12px 12px;
-}
-.conf-step__seances-movie:hover .conf-step__close {
-  display: block;
+.conf-step__seances-movie:hover {
+  outline: 3px solid #16A6AF;
 }
 .conf-step__seances-movie::before {
   content: "";
@@ -784,6 +771,11 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
 }
 .conf-step__list_start .conf-step__custom-checkbox:disabled + label::before {
   background-color: #e9ecef;
+}
+
+.conf-step__poster img {
+  max-width: 120px;
+  max-height: 150px;
 }
 
 .conf_step__datepicker {

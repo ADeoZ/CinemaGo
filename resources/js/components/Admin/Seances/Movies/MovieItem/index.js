@@ -11,9 +11,8 @@ export default function MovieItem(props) {
     return (
         <div
             className="conf-step__movie"
-            onClick={() => dispatch(showPopup({title: "Удаление фильма", form: "deleteMovie", id}))}
+            onClick={() => dispatch(showPopup({title: "Редактирование фильма", form: "editMovie", id}))}
         >
-            <div className="conf-step__close" />
             <img className="conf-step__movie-poster" alt="poster" src={`../images/${img}`}/>
             <h3 className="conf-step__movie-title">{title}</h3>
             <p className="conf-step__movie-duration">{filmDuration} {durationEnding}</p>

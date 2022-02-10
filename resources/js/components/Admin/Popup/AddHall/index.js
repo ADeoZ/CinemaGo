@@ -1,13 +1,22 @@
 import {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import CloseOk from "../CloseOk";
-import {createHall, getHalls} from "../../../../reducers/adminSlice";
+import {createHall, getHalls, updateHall} from "../../../../reducers/adminSlice";
 import {closePopup} from "../../../../reducers/popupSlice";
 
-export default function AddHall() {
-    const EMPTY_STATE = {name: ""};
-    const [form, setForm] = useState(EMPTY_STATE);
+export default function AddHall(props) {
     const dispatch = useDispatch();
+    const {edit} = props;
+
+    const INIT_STATE = {name: ""};
+    const {halls} = useSelector((state) => state.admin);
+    let hall = {};
+    if (edit) {
+        const {id} = useSelector((state) => state.popup);
+        hall = halls.find((hall) => hall.id === id);
+        INIT_STATE.name = hall.name;
+    }
+    const [form, setForm] = useState(INIT_STATE);
 
     const handleChange = ({target}) => {
         const name = target.name;
@@ -17,10 +26,18 @@ export default function AddHall() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(createHall(form.name)).then(() => {
-            dispatch(closePopup());
-            dispatch(getHalls());
-        });
+
+        if (edit) {
+            dispatch(updateHall({...hall, name: form.name})).then(() => {
+                dispatch(closePopup());
+                dispatch(getHalls());
+            });
+        } else {
+            dispatch(createHall(form.name)).then(() => {
+                dispatch(closePopup());
+                dispatch(getHalls());
+            });
+        }
     };
 
     return (
@@ -40,7 +57,7 @@ export default function AddHall() {
                     required
                 />
             </label>
-            <CloseOk text={"Добавить зал"}/>
+            <CloseOk text={edit ? "Сохранить" : "Добавить зал"}/>
         </form>
     );
 }

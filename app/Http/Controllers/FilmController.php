@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FilmRequest;
 use App\Models\Film;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 class FilmController extends Controller
 {
@@ -54,6 +54,10 @@ class FilmController extends Controller
     public function update(FilmRequest $request, Film $film)
     {
         $film->fill($request->validated());
+        if ($request->has('poster')) {
+            // Storage::delete($film->poster);
+            $film->poster = $request->poster->store('posters');
+        }
         return $film->save();
     }
 
