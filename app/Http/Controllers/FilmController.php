@@ -53,11 +53,12 @@ class FilmController extends Controller
      */
     public function update(FilmRequest $request, Film $film)
     {
-        $film->fill($request->validated());
+
         if ($request->has('poster')) {
-            // Storage::delete($film->poster);
+            Storage::delete($film->poster);
             $film->poster = $request->poster->store('posters');
         }
+        $film->fill($request->safe()->except('poster'));
         return $film->save();
     }
 
