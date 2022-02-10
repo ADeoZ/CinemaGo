@@ -3,10 +3,5 @@
     "/css/admin/normalize.css": "/css/admin/normalize.css",
     "/css/normalize.css": "/css/normalize.css",
     "/css/admin/styles.css": "/css/admin/styles.css",
-    "/css/styles.css": "/css/styles.css",
-    "/images/poster1.jpg": "/images/poster1.jpg",
-    "/images/poster2.jpg": "/images/poster2.jpg",
-    "/images/poster3.jpg": "/images/poster3.jpg",
-    "/images/poster4.jpg": "/images/poster4.jpg",
-    "/images/poster5.jpg": "/images/poster5.jpg"
+    "/css/styles.css": "/css/styles.css"
 }

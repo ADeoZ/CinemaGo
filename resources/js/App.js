@@ -18,14 +18,11 @@ function App() {
                 <Route path="booking" element={<MainBooking/>}/>
                 <Route path="ticket" element={<MainTicket/>}/>
                 <Route path="admin/login" element={<Login/>}/>
-                {/*<AuthRequired>*/}
-                {/*    <Route path="admin" element={<Admin/>}/>*/}
-                {/*</AuthRequired>*/}
                 <Route
                     path="admin"
                     element={
                         <AuthRequired>
-                            <Admin />
+                            <Admin/>
                         </AuthRequired>
                     }
                 />

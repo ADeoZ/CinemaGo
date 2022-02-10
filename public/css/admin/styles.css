@@ -71,6 +71,8 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
 .page-header {
   color: #FFFFFF;
   text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
 }
 .page-header .page-header__title {
   margin: 0;
@@ -83,6 +85,16 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
 .page-header .page-header__subtitle {
   font-size: 1rem;
   letter-spacing: 0.46em;
+}
+.page-header .page-header__exit {
+  align-self: center;
+  font-size: 22px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.page-header .page-header__exit:hover, .page-header .page-header__exit:focus {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
 .conf-step {
@@ -353,6 +365,9 @@ input[type=radio], input[type=submit], button, .conf-step__header, select {
 .conf-step__input:focus, .login__input:focus {
   outline: 1px #CF87FF solid;
   outline-offset: -1px;
+}
+.conf-step__input[type=file], .login__input[type=file] {
+  background-color: #FFFFFF;
 }
 
 .conf-step__chair {

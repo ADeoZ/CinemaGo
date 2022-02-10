@@ -16,5 +16,4 @@ mix.js('resources/js/index.js', 'public/js')
     .css('resources/css/normalize.css', 'public/css')
     .sass('resources/sass/styles.scss', 'public/css')
     .css('resources/css/admin/normalize.css', 'public/css/admin')
-    .sass('resources/sass/admin/styles.scss', 'public/css/admin')
-    .copy('resources/js/components/Client/images/poster*.jpg', 'public/images');
+    .sass('resources/sass/admin/styles.scss', 'public/css/admin');

@@ -76,6 +76,8 @@ input[type='radio'], input[type='submit'], button, .conf-step__header, select {
 .page-header {
     color: $white;
     text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
 
     .page-header__title {
         margin: 0;
@@ -90,6 +92,18 @@ input[type='radio'], input[type='submit'], button, .conf-step__header, select {
     .page-header__subtitle {
         font-size: 1rem;
         letter-spacing: 0.46em;
+    }
+
+    .page-header__exit {
+        align-self: center;
+        font-size: 22px;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            text-decoration-line: underline;
+        }
     }
 }
 
@@ -400,6 +414,10 @@ input[type='radio'], input[type='submit'], button, .conf-step__header, select {
     &:focus {
         outline: 1px #CF87FF solid;
         outline-offset: -1px;
+    }
+
+    &[type='file'] {
+        background-color: $white;
     }
 }
 
